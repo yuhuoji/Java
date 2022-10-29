@@ -1,0 +1,57 @@
+springboot/.mvn/
+springboot/mvnw
+springboot/mvnw.cmd
+springboot/HELP.md
+springboot/springboot.iml
+node_modules/
+
+# Compiled class file
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+/out/
+/target/
+*.ipr
+*.iml
+*.iws
+.idea/
+
+# Maven
+target/
+**/target/
+
+# Mac
+.DS_Store/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# others
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+temp/
