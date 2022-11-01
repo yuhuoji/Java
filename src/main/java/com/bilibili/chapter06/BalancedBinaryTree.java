@@ -1,4 +1,4 @@
-package com.arithmeticBiliBili.chapter06;
+package com.bilibili.chapter06;
 
 import org.junit.Test;
 

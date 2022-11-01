@@ -1,4 +1,4 @@
-package com.arithmeticBiliBili.chapter01;
+package com.bilibili.chapter01;
 
 public class EvenTimesOddTimes {
     /* 异或操作 */

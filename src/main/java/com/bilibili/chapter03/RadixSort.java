@@ -1,4 +1,4 @@
-package com.arithmeticBiliBili.chapter03;
+package com.bilibili.chapter03;
 
 /* 基数排序
  * 不基于比较的排序 必须要有进制才能比较

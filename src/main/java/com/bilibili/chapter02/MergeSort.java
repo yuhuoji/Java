@@ -1,6 +1,5 @@
-package com.arithmeticBiliBili.chapter02;
+package com.bilibili.chapter02;
 
-import com.sun.org.apache.bcel.internal.generic.LLOAD;
 import org.junit.Test;
 
 /* 归并排序

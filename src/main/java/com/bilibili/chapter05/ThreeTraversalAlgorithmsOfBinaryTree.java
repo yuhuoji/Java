@@ -1,4 +1,4 @@
-package com.arithmeticBiliBili.chapter05;
+package com.bilibili.chapter05;
 
 import java.util.Stack;
 
