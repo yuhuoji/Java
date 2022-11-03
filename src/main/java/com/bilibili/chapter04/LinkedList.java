@@ -2,32 +2,12 @@ package com.bilibili.chapter04;
 
 import org.junit.Test;
 
-/* 链表
+/**
+ * TODO 链表
  * 单链表，双向链表
- * */
-/* 节点 */
-
-
+ */
 public class LinkedList {
 
-     private static class ListNode {
-        public int val;
-        public ListNode next;
-
-        //constructor
-        public ListNode() {
-        }
-
-        public ListNode(int val) {
-            this.val = val;
-        }
-
-        public ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-    }
     private ListNode head; //链表的头节点
 
     public ListNode createLinkedList() {
@@ -90,7 +70,7 @@ public class LinkedList {
         ListNode cur = head;
         while (cur != null) {
             ListNode next = cur.next; //保存下一个节点
-            cur.next = pre;
+            cur.next = pre; //pre <- cur
             pre = cur;
             cur = next;
         }
@@ -137,11 +117,29 @@ public class LinkedList {
         return newHead;
     }
 
-
     @Test
     public void test() {
         System.out.println("test");
         this.createLinkedList();
         this.display();
+    }
+
+    private static class ListNode {
+        public int val;
+        public ListNode next;
+
+        //constructor
+        public ListNode() {
+        }
+
+        public ListNode(int val) {
+            this.val = val;
+        }
+
+        public ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+
     }
 }

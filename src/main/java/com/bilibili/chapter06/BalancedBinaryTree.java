@@ -33,7 +33,8 @@ public class BalancedBinaryTree {
         }
     }
 
-    /* leetcode 110 判断搜索二叉树 自定向下
+    /**
+     * leetcode 110 判断搜索二叉树 自定向下
      * 平衡二叉树 = 左子树是AVL + 右子树是AVL + 左右子树高度相差不超过1
      * */
     //先序遍历

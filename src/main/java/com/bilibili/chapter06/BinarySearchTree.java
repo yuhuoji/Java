@@ -83,7 +83,7 @@ public class BinarySearchTree {
         return true;
     }
 
-    /* 同bilibili左神 */
+    /* 做法同bilibili左神 */
     public Result process4(TreeNode head) {
         //base case
         if (head == null) {
@@ -111,8 +111,6 @@ public class BinarySearchTree {
         if (rightData != null && (!rightData.isBST || head.value > rightData.min)) {
             isBST = false;
         }
-
-
         return new Result(isBST, min, max);
     }
 

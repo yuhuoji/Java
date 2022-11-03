@@ -91,6 +91,7 @@ public class CompleteBinaryTree {
     }
 
 }
+
 class CompleteBinaryTreeTest {
     @Test
     public void completeBinaryTreeTest() {
