@@ -93,7 +93,7 @@ public class GraphOperation {
     public List<Node> sortedTopology(Graph graph) {
         //key: 某一点， value: 当前剩余的入度
         HashMap<Node, Integer> inMap = new HashMap<>();
-        //入度为0的点才能进入
+        //初始化inMap，入度为0的点才能进入
         Queue<Node> zeroInQueue = new LinkedList<>();
         for (Node node : graph.nodes.values()) { //初始化所有节点及其入度
             inMap.put(node, node.in);
@@ -106,7 +106,7 @@ public class GraphOperation {
         List<Node> result = new ArrayList<>();
         while (!zeroInQueue.isEmpty()) {
             Node curNode = zeroInQueue.poll();
-            result.add(curNode);
+            result.add(curNode); //topological sorting
             for (Node next : curNode.nexts) { //删除curNode及其影响
                 inMap.put(next, inMap.get(next) - 1); //更新， 临近点的入度in -1
                 if (inMap.get(next) == 0) {
@@ -124,5 +124,8 @@ public class GraphOperation {
     @Test
     public void graphOperationTest() {
         System.out.println("test");
+
+
+
     }
 }
