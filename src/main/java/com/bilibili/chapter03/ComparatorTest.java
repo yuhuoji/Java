@@ -29,7 +29,7 @@ public class ComparatorTest {
             System.out.print(person.getName() + ":" + person.getAge());
         }
         //use Comparator, 比较时传入比较器
-//        Arrays.sort(people2, new PersonCompartor());
+//        Arrays.sort(people2, new PersonComparator());
         //匿名内部类
         Arrays.sort(people2, new Comparator<Person>(){
             @Override

@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 /* 堆（完全二叉树） N个数的堆层数有⌊log(N)⌋+1
  * 堆排序  大顶堆最大的数与最后一位交换，heapSize--，arr[0]做heapify； 时间复杂度O（N*log（N））空间复杂度O（1）
+ * TODO 大根堆，小根堆
  * */
 public class HeapSort {
     public void heapSort(int[] arr) {
