@@ -1,6 +1,5 @@
-package com.bilibili.chapter8;
+package com.bilibili.chapter08;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 

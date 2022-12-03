@@ -1,4 +1,4 @@
-package com.bilibili.chapter8;
+package com.bilibili.chapter08;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
