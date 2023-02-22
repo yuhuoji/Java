@@ -1,8 +1,4 @@
-springboot/.mvn/
-springboot/mvnw
-springboot/mvnw.cmd
-springboot/HELP.md
-springboot/springboot.iml
+/src/test/
 node_modules/
 
 # Compiled class file

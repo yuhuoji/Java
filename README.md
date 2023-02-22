@@ -1,5 +1,5 @@
-# Data-Structures-and-Algorithms
-Data structure and algorithm
+# Data-Structures-and-Algorithms  
+Data structure and algorithm  
 
-chapter 1~9
-chapter 10~
+chapter 1~9  
+chapter 10~  
