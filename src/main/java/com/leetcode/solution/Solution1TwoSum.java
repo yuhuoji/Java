@@ -3,7 +3,7 @@ package com.leetcode.solution;
 import org.junit.Test;
 
 /*1. 两数之和*/
-public class TwoSum {
+public class Solution1TwoSum {
     public int[] twoSum(int[] nums, int target) {
         for (int i = 0; i < nums.length - 1; i++) {
             for (int j = i + 1; j < nums.length; j++) {
