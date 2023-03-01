@@ -6,7 +6,7 @@ import org.junit.Test;
  * 左闭右闭即[left, right] -> middle排除
  * 或者左闭右开即[left, right) -> middle还有
  */
-public class Solution704BinarySearch {
+public class Leetcode704BinarySearch {
 
     //[]
     public int search(int[] nums, int target) {

@@ -3,7 +3,7 @@ package com.leetcode.algorithm.day1;
 /**
  * @date 2023-02-28 18:45
  */
-public class Solution278FirstBadVersion {
+public class Leetcode278FirstBadVersion {
     /* The isBadVersion API is defined in the parent class VersionControl.
           boolean isBadVersion(int version); */
     private boolean isBadVersion(int version) {

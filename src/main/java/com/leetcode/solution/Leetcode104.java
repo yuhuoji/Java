@@ -7,7 +7,7 @@ import java.util.Queue;
  * 二叉树的最大深度
  * DATE 2022/10/6 14:24
  */
-public class Solution104 {
+public class Leetcode104 {
     /* DFS 深度优先 recursion */
     public int maxDepthDFS(TreeNode root) {
         if (root == null) {

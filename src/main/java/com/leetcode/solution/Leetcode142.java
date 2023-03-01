@@ -6,7 +6,7 @@ import org.junit.Test;
  * leetcode142 单链表有环
  *
  * 找到单链表第一个入节点，如果无环返回null */
-public class Solution142 {
+public class Leetcode142 {
     public ListNode detectCycle(ListNode head) {
         if (head == null || head.next == null || head.next.next == null) {
             return null;

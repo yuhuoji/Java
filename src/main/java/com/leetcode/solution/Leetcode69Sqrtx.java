@@ -4,7 +4,7 @@ package com.leetcode.solution;
  * @date 2023-02-28 20:49
  * TODO 其他解法
  */
-public class Solution69Sqrtx {
+public class Leetcode69Sqrtx {
     //二分查找，分还是middle，比较变了，找边界，找最大的平方不超过x的数
     public int mySqrt(int x) {
         int left = 0, right = x, ans = -1;

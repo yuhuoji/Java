@@ -2,11 +2,11 @@ package com.bilibili40.chapter02;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /* 归并排序
 * T(N) = 2*T(N/2) + O（N）
 * log(2,2) = 1 时间复杂度NlogN
-*
-*
 * */
 public class MergeSort {
     public void mergeSort(int[] arr) {
@@ -16,16 +16,16 @@ public class MergeSort {
     }
 
     private void process(int[] arr, int L, int R) {
-        /* arr只有一个属 */
+        /* arr只有一个数 */
         if (L == R)
             return;
-        int mid = L + ((R - L) >> 1); //中点
+        int mid = L + ((R - L) >> 1); //防止溢出
         process(arr, L, mid);
         process(arr, mid + 1, R);
         merge(arr, L, mid, R); //合并
     }
 
-    /* 合并两个有序数组 */
+    //合并两个有序数组 L~M M+1~R
     private void merge(int[] arr, int L, int M, int R) {
         int[] tempArr = new int[R - L + 1];
         int i = 0;
@@ -50,5 +50,7 @@ public class MergeSort {
     public void mergeSortTest() {
         int[] arr = {6,2,8,3,9,4,0,1};
         System.out.println("mergeSortTest");
+        mergeSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

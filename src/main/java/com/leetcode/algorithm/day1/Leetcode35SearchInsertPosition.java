@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * @date 2023-02-28 20:00
  */
-public class Solution35SearchInsertPosition {
+public class Leetcode35SearchInsertPosition {
     //[]
     public int searchInsert(int[] nums, int target) {
         int left = 0, right = nums.length - 1, ans = nums.length;

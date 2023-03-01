@@ -11,6 +11,6 @@ package com.leetcode.solution;
  * 3。大小根堆调整：如果某个大于另一个2个及以上，多的吐给少的一个
  *
  * */
-public class Solution295 {
+public class Leetcode295 {
 
 }
