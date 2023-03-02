@@ -11,8 +11,8 @@ public class BubbleSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        for (int i = 0; i < arr.length-1; i++) { //n-1次
-            for (int j = 0; j < arr.length - 1 - i; j++) { //前i个已经有序
+        for (int i = 0; i < arr.length - 1; i++) { //0 ~ n-2
+            for (int j = 0; j < arr.length - 1 - i; j++) { //0~前i个已经有序
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j + 1);
                 }
