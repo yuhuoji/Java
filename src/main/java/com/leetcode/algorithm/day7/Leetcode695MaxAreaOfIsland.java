@@ -11,6 +11,9 @@ public class Leetcode695MaxAreaOfIsland {
 
     //方法一 深度优先搜索 递归
     public int maxAreaOfIsland1(int[][] grid) {
+        if (grid == null || grid.length == 0 || (grid[0] == null || grid[0].length == 0)) { //二维数组判空
+            return 0;
+        }
         int ans = 0; //最大的岛屿面积
         for (int i = 0; i < grid.length; ++i) {
             for (int j = 0; j < grid[0].length; j++) {

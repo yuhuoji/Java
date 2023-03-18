@@ -1,5 +1,5 @@
-test/
-node_modules/
+# **/test/
+/node_modules/
 
 # Compiled class file
 *.class
@@ -10,8 +10,7 @@ node_modules/
 .settings/
 
 # IntelliJ
-/out/
-/target/
+**/out/
 *.ipr
 *.iml
 *.iws
@@ -28,11 +27,8 @@ target/
 .env.local
 .env.*.local
 
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Log file
+*.log
 
 # Editor directories and files
 .vscode/
@@ -42,12 +38,26 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# others
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
 *.jar
 *.war
+*.nar
+*.ear
 *.zip
 *.tar
 *.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# others
 *.pid
 *.orig
 temp/
