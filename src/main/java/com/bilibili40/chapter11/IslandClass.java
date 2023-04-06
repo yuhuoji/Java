@@ -10,11 +10,12 @@ public class IslandClass {
     /**
      * 计算岛屿的数量，改成2
      * 时间复杂度O(N*M)
+     *
      * @param grid 数组
      * @return 数量
      */
     public int countIsland(int[][] grid) {
-        if (grid == null || grid.length == 0 || (grid[0] == null || grid[0].length == 0)) { //二维数组判空
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) { //二维数组判空, null {} {{}}
             return 0;
         }
         int row = grid.length, column = grid[0].length;
@@ -33,6 +34,7 @@ public class IslandClass {
     /**
      * 把当前相连的岛屿1改成2
      * 时间复杂度O（N*M） 4*N*M
+     *
      * @param grid   数组
      * @param i      当前位置
      * @param j      当前位置

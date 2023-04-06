@@ -6,9 +6,10 @@ package com.bilibili40.chapter11;
  */
 public class KMPClass {
     /**
+     * 是否包含字符串
      * @param s 主字符串
      * @param m 匹配字符串
-     * @return 开始的位置，如果不包含返回-1
+     * @return 如果包含，返回开始的位置，如果不包含返回-1
      */
     public int getIndexOf(String s, String m) {
         if (s == null || m == null || m.length() < 1 || s.length() < m.length()) {
@@ -23,7 +24,7 @@ public class KMPClass {
             if (str1[i1] == str2[i2]) { //字符相等
                 ++i1;
                 ++i2;
-            } else if (next[i2] == -1) { //str2已经移动到开头
+            } else if (next[i2] == -1) { //i2==0,i2已经移动到str2开头
                 ++i1; //主串用下一个位置开始重新匹配
             } else {
                 i2 = next[i2]; //从最长前缀下一个位置开始匹配，i2向前移动相当于待匹配字符串向右移动
@@ -40,14 +41,14 @@ public class KMPClass {
      * @return 返回next数组
      */
     public int[] getNextArray(char[] ms) {
-        if (ms.length == 1) { //长度为1，0位置规定为-1
+        if (ms.length == 1) { //长度为1，则0位置规定为-1
             return new int[]{-1};
         }
         int[] next = new int[ms.length];
         next[0] = -1; //规定0位置-1
         next[1] = 0; //规定1位置0
         int i = 2; //next数组从2开始计算
-        int cn = 0; //开始时用cn与i-1比较，前缀下一位的坐标
+        int cn = 0; //cn位置的字符与i-1位置的字符比较，也表示当前比较的前缀串下一位的坐标
         while (i < ms.length) {
             if (ms[cn] == ms[i - 1]) {
                 next[i] = ++cn;
