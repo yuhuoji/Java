@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * @date 2023-04-06
  * MaxDistanceInTree
- * 二叉树dp问题的一种分类：root参与和root不参与两种情况
+ * 二叉树递归问题的一种分类：root参与和root不参与两种情况
  */
 public class Leetcode543DiameterOfBinaryTree {
     private Info process(TreeNode node) {
