@@ -14,6 +14,7 @@ public class BitAddSubtractMultiplyDivide {
             a = sum; //a = 无进位相加信息
 //            System.out.println("sum = a = " + Integer.toBinaryString(a) + ", b = " + Integer.toBinaryString(b));
         }
+        //直到进位信息==0，无进位相加信息就是结果
         return sum;
     }
 
@@ -28,7 +29,7 @@ public class BitAddSubtractMultiplyDivide {
     public int multiply(int a, int b) {
         int res = 0;
         while (b != 0) {
-            if ((b & 1) != 0) {
+            if ((b & 1) != 0) { //b最后一位是否为0
                 res = add(res, a);
             }
             System.out.println("a = " + Integer.toBinaryString(a) + ", b = " + Integer.toBinaryString(b) + ", res = " + Integer.toBinaryString(res));
@@ -63,7 +64,7 @@ public class BitAddSubtractMultiplyDivide {
         int res = 0;
         //x 0~30位
         for (int i = 30; i >= 0; subtract(i, 1)) {
-            if ((x >> i) >= y) {
+            if ((x >> i) >= y) { //y左移够x(溢出，符号位) <=> x右移够y(安全)
                 res |= (1 << i);
                 x = subtract(x, y << i);
             }

@@ -1,6 +1,5 @@
 package com.bilibili65.chapter01;
 
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,7 +7,7 @@ import java.util.Arrays;
 /**
  * @date 2023-02-23 09:29
  */
-public class comparator {
+public class Comparator {
     public int[] arrWithRandomLengthAndRandomValue(int maxLength, int maxValue) {
         int len = (int) (Math.random() * maxLength);
         int[] arr = new int[len];

@@ -2,8 +2,8 @@
 public class TestClass {
 
     public static void main(String[] args) {
-
-        System.out.println("666");
+        int a = 1;
+        System.out.println(a^1);
     }
 
 }
