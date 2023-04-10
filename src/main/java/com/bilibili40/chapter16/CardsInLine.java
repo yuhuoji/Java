@@ -1,7 +1,12 @@
-package com.bilibili40.chapter09;
+package com.bilibili40.chapter16;
+
+import org.junit.Test;
 
 /**
- * @date 2022-12-04
+ * @date 2023-04-10
+ * 递归改动态规划
+ * 范围上尝试
+ * <p>
  * 给定一个整型数组arr，代表数值不同的纸牌排成一条线。玩家A和玩家B依次拿走每张纸牌，规定玩家A先拿，玩家B后拿，但是每个玩家每次只能拿走最左或最右的纸牌，玩家A和玩家B都绝顶聪明。请返回最后获胜者的分数。
  * 【举例】
  * arr=[1,2,100,4]。
@@ -36,5 +41,56 @@ public class CardsInLine {
             return 0;
         }
         return Math.min(first(arr, i + 1, j), first(arr, i, j - 1)); //对手可能选i或j，对手先选会给自己更小的，下次自己变先手
+    }
+
+    /**
+     * 范围上尝试，改动态规划
+     */
+    public int win2(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        int[][] first = new int[arr.length][arr.length]; //first表
+        int[][] second = new int[arr.length][arr.length]; //second表
+        for (int j = 0; j < arr.length; ++j) {
+            first[j][j] = arr[j];
+            for (int i = j - 1; i >= 0; --i) {
+                first[i][j] = Math.max(arr[i] + second[i + 1][j], arr[j] + second[i][j - 1]);
+                second[i][j] = Math.min(first[i + 1][j], first[i][j - 1]);
+            }
+        }
+        return Math.max(first[0][arr.length - 1], second[0][arr.length - 1]);
+    }
+
+    public int dp(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        int[][] first = new int[arr.length][arr.length]; //first表
+        int[][] second = new int[arr.length][arr.length]; //second表
+        for (int i = 0; i < arr.length; ++i) { //根据base case填对角线的值
+            first[i][i] = arr[i];
+        }
+        int row = 0;
+        int col = 1;
+        //对角线位置开始row行col列
+        while (col < arr.length) {
+            int i = row;
+            int j = col;
+            while (i < arr.length && j < arr.length) {
+                first[i][j] = Math.max(arr[i] + second[i + 1][j], arr[j] + second[i][j - 1]);
+                second[i][j] = Math.min(first[i + 1][j], first[i][j - 1]);
+                ++i;
+                ++j;
+            }
+            ++col;
+        }
+        return Math.max(first[0][arr.length - 1], second[0][arr.length - 1]);
+    }
+
+
+    @Test
+    public void test() {
+        System.out.println("test");
     }
 }
