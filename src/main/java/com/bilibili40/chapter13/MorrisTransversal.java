@@ -32,7 +32,7 @@ public class MorrisTransversal {
                     mostRight = mostRight.right; //找到左子树上最右的节点
                 }
                 //已经找到左子树上的最右节点mostRight
-                if (mostRight != null) { //第一次来到cur
+                if (mostRight == null) { //第一次来到cur
                     mostRight.right = cur;
                     cur = cur.right;
                     continue;
@@ -63,7 +63,7 @@ public class MorrisTransversal {
                     mostRight = mostRight.right; //找到左子树上最右的节点
                 }
                 //已经找到左子树上的最右节点mostRight
-                if (mostRight != null) { //第一次来到cur
+                if (mostRight == null) { //第一次来到cur
                     System.out.println(cur.val + " "); //先序遍历第一次来到节点就打印
                     mostRight.right = cur;
                     cur = cur.right;
@@ -97,7 +97,7 @@ public class MorrisTransversal {
                     mostRight = mostRight.right; //找到左子树上最右的节点
                 }
                 //已经找到左子树上的最右节点mostRight
-                if (mostRight != null) { //第一次来到cur
+                if (mostRight == null) { //第一次来到cur
                     mostRight.right = cur;
                     cur = cur.right;
                     continue; //
@@ -109,7 +109,6 @@ public class MorrisTransversal {
             cur = cur.right; //如果cur没有左孩子，cur向右移动
         }
     }
-
 
     /**
      * 只在第二次回到节点时逆序打印左树的右边界
@@ -130,7 +129,7 @@ public class MorrisTransversal {
                     mostRight = mostRight.right; //找到左子树上最右的节点
                 }
                 //已经找到左子树上的最右节点mostRight
-                if (mostRight != null) { //第一次来到cur
+                if (mostRight == null) { //第一次来到cur
                     mostRight.right = cur;
                     cur = cur.right;
                     continue;
