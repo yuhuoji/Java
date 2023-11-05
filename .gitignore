@@ -1,5 +1,9 @@
+#leetcode plugin
+**/leetcode/editor/cn/doc/**/
+!**/leetcode/editor/cn/doc/*.*
+!**/leetcode/editor/cn/doc/note/
+
 # **/test/
-/node_modules/
 
 # Compiled class file
 *.class
