@@ -8,11 +8,13 @@ Leetcode${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!velocity
 
 ```
 package com.leetcode.editor.cn;
+
+// ${question.title}
 public class Leetcode${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!velocityTool.camelCaseName(${question.titleSlug})){
     public static void main(String[] args) {
-        System.out.println("Leetcode" + ${question.frontendQuestionId});
+        System.out.println("Leetcode " + ${question.frontendQuestionId});
         Solution solution = new Leetcode${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!velocityTool.camelCaseName(${question.titleSlug}))().new Solution();
-    
+        
     }
 ${question.code}
 }
