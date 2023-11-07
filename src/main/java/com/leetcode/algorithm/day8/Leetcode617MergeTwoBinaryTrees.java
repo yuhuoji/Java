@@ -177,7 +177,7 @@ public class Leetcode617MergeTwoBinaryTrees {
         System.out.println("]");
     }
 
-    public static class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
