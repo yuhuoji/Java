@@ -9,7 +9,9 @@ Leetcode${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!velocity
 ```
 package com.leetcode.editor.cn;
 
-// ${question.title}
+import com.leetcode.helper.*;
+
+//${question.frontendQuestionId} ${question.title}
 public class Leetcode${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!velocityTool.camelCaseName(${question.titleSlug})){
     public static void main(String[] args) {
         System.out.println("Leetcode " + ${question.frontendQuestionId});
@@ -20,4 +22,4 @@ ${question.code}
 }
 ```
 
-[note](src/main/java/com/leetcode/editor/cn/doc/note)
+[note](src/main/java/com/leetcode/editor/cn/doc/)
