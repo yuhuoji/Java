@@ -46,8 +46,9 @@ public class Leetcode25ReverseNodesInKGroup {
                     pre = cur;
                     cur = nxt;
                 }
+                //p0 pre是新的首节点 cur是下一段的开头
                 nxt = p0.next;
-                p0.next.next = cur;
+                nxt.next = cur;
                 p0.next = pre;
                 p0 = nxt;
             }
