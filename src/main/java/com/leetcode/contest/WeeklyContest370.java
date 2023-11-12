@@ -1,11 +1,11 @@
 package com.leetcode.contest;
 
 
-public class Leetcode370 {
+public class WeeklyContest370 {
     // TODO @date 2023-11-05
     public static void main(String[] args) {
         System.out.println("Leetcode ");
-        Leetcode370 solution = new Leetcode370();
+        WeeklyContest370 solution = new WeeklyContest370();
 
         int[] nums = {3, 3, 5, 6};
         System.out.println(solution.maxBalancedSubsequenceSum(nums));
