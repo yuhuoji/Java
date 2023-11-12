@@ -2,7 +2,10 @@ package com.leetcode.helper;
 
 import java.util.*;
 import java.util.regex.*;
-//TODO @date 2023-11-06 添加其他有效方法
+
+// TODO @date 2023-11-12 添加其他有效方法 stringToList
+// List.of
+// use T in definitions
 public class LeetCodeHelper {
     // 将字符串转换为整数
     public static int stringToInteger(String input) {
@@ -213,6 +216,7 @@ public class LeetCodeHelper {
         return sb.toString();
     }
 
+    // Definitions
 /*    public static class ListNode {
         public int val;
         public ListNode next;
