@@ -12,6 +12,12 @@ public class LeetCodeHelper {
         return Integer.parseInt(input);
     }
 
+    // 将字符串(只包括英文字母)转换为字符数组
+    public static char[] stringToCharArray(String input) {
+        input = input.replaceAll("[^a-zA-Z]", ""); // 只保留英文字母
+        return input.toCharArray();
+    }
+
     // 将字符串转换为整数数组
     public static int[] stringToIntegerArray(String input) {
         input = input.replaceAll("\\[|\\]", "");
