@@ -1,10 +1,12 @@
 package com.practice;
 
-public class Solution {
+public class Interview1110 {
+    // @date 2023-11-10
+    //dp?
     public static void main(String[] args) {
         String s1 = "aacqabc";
         String patten1 = "abc";
-        System.out.println("ans:" + Solution.maxString(s1, patten1));
+        System.out.println("ans:" + Interview1110.maxString(s1, patten1));
     }
 
     // 测试用例

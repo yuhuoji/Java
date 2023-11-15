@@ -1,9 +1,12 @@
 package com.practice;
 
+import java.util.concurrent.ConcurrentSkipListMap;
+
+//java.util.concurrent
 public class JUC {
     public static void main(String[] args) {
-        //用一下notify和notifyAll
 
+        // ConcurrentSkipListMap
     }
 
     static class  Solution{

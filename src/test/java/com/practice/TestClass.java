@@ -1,6 +1,7 @@
 package com.practice;
 
 import com.leetcode.helper.*;
+
 import java.util.*;
 
 
@@ -13,5 +14,10 @@ public class TestClass {
 
         System.out.println("List from array: " + listFromArray);
         System.out.println(listFromArray.get(2));
+        int[][] f = new int[2][3];
+        for (int[] row : f) {
+            Arrays.fill(row, 1);
+
+        }
     }
 }
