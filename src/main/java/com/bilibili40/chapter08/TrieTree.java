@@ -21,7 +21,7 @@ public class TrieTree {
     }
 
     //前缀树
-    public class Trie {
+    private class Trie {
         private TrieNode root; //根节点，根节点的pass表示有多少字符串以空作为前缀（树中有多少字符串）
 
         public Trie() {

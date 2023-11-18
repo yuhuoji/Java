@@ -1,82 +1,54 @@
 package com.leetcode.contest;
 
 import java.util.*;
-//TODO @date 2023-11-12
 
 public class WeeklyContest371 {
     public static void main(String[] args) {
         WeeklyContest371 solution = new WeeklyContest371();
 
-
-        //[["akuhmu","0454"],["aywtqh","0523"],["akuhmu","0518"],["ihhkc","0439"],["ihhkc","0508"],["akuhmu","0529"],["aywtqh","0530"],["aywtqh","0419"]]
         List<List<String>> list = new ArrayList<>();
-        // list.add(Arrays.asList("akuhmu", "0454"));
-        // list.add(Arrays.asList("akuhmu", "0518"));
-        // list.add(Arrays.asList("ihhkc", "0439"));
-        // list.add(Arrays.asList("ihhkc", "0508"));
-        // list.add(Arrays.asList("akuhmu", "0529"));
         list.add(Arrays.asList("aywtqh", "0419"));
         list.add(Arrays.asList("aywtqh", "0523"));
         list.add(Arrays.asList("aywtqh", "0530"));
         System.out.println("ans:" + solution.findHighAccessEmployees(list).toString());
 
-        // String s = "[1,1,2,3,5]";
-        // System.out.println("ans:" + solution.maximumStrongPairXor(LeetCodeHelper.stringToIntegerArray(s)));
-        // System.out.println("ans1:" + solution.maximumStrongPairXor1(LeetCodeHelper.stringToIntegerArray(s)));
     }
 
-    // 100117. 最大化数组末位元素的最少操作次数
+    // 2934. 最大化数组末位元素的最少操作次数
     public int minOperations(int[] nums1, int[] nums2) {
 
         return 0;
     }
 
-    // TODO @date 2023-11-12
-    // 100128. 高访问员工
+    // 2933. 高访问员工
     // 一小时[60)内，大于等于三次.i和i+2做差看是否小于60
+    // 哈希表 Map<String, List<Integer>>
     public List<String> findHighAccessEmployees(List<List<String>> access_times) {
-        access_times.sort((a, b) -> {
-            if (a.get(0).equals(b.get(0))) {
-                return a.get(1).compareTo(b.get(1));
-            } else {
-                return a.get(0).compareTo(b.get(0));
-            }
-        });
-        List<String> ans = new ArrayList<>();
-
-        int n = access_times.size();
-        String last = null;
-        for (int i = 0; i < n; ++i) {
-            String name = access_times.get(i).get(0);
-            if (name.equals(last)) {
-                continue;
-            }
-            int cnt = 0;
-            while (i + 2 < n && access_times.get(i + 2).get(0).equals(name)) {
-                int hour1 = Integer.parseInt(access_times.get(i).get(1).substring(0, 2));
-                int hour2 = Integer.parseInt(access_times.get(i + 2).get(1).substring(0, 2));
-                int time1 = Integer.parseInt(access_times.get(i).get(1).substring(2, 4));
-                int time2 = Integer.parseInt(access_times.get(i + 2).get(1).substring(2, 4));
-                int minutes1 = hour1 * 60 + time1;
-                int minutes2 = hour2 * 60 + time2;
-                if (minutes2 - minutes1 < 60) {
-                    cnt++;
-                }
-                i++;
-            }
-            if (cnt > 0) {
-                ans.add(name);
-            }
-
-            last = name;
+        Map<String, List<Integer>> groups = new HashMap<>();
+        for (var entry : access_times) {
+            String name = entry.get(0), s = entry.get(1);
+            int t = Integer.parseInt(s.substring(0, 2)) * 60 + Integer.parseInt(s.substring(2));
+            groups.computeIfAbsent(name, k -> new ArrayList<>()).add(t); //REVIEW @date 2023-11-18 Map computeIfAbsent方法
         }
 
+        List<String> ans = new ArrayList<>();
+        for (var entry : groups.entrySet()) {
+            List<Integer> a = entry.getValue();
+            Collections.sort(a);
+            for (int i = 2; i < a.size(); i++) {
+                if (a.get(i) - a.get(i - 2) < 60) {
+                    ans.add(entry.getKey());
+                    break;
+                }
+            }
+        }
         return ans;
     }
 
-
-    // 100120. 找出强数对的最大异或值 I
-    // 100124. 找出强数对的最大异或值 II
+    // TODO @date 2023-11-18
+    // LC 421 异或和
+    // 2932. 找出强数对的最大异或值 I
+    // 2935. 找出强数对的最大异或值 II
     // x>=y/2
     public int maximumStrongPairXor(int[] nums) {
         int n = nums.length;

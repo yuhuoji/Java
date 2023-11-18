@@ -15,9 +15,9 @@ public class TestClass {
         System.out.println("List from array: " + listFromArray);
         System.out.println(listFromArray.get(2));
         int[][] f = new int[2][3];
-        for (int[] row : f) {
+        for (var row : f) {
             Arrays.fill(row, 1);
-
         }
+
     }
 }

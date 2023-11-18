@@ -21,5 +21,3 @@ public class LC${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!v
 ${question.code}
 }
 ```
-
-[note](src/main/java/com/leetcode/editor/cn/doc/)

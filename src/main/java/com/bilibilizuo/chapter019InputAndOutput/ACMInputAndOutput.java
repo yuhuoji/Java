@@ -1,4 +1,4 @@
-package com.zuo.chapter019;
+package com.bilibilizuo.chapter019InputAndOutput;
 
 import java.io.*;
 
@@ -31,9 +31,9 @@ import java.io.*;
 209
 备注:1⩽N,M⩽200; −100⩽arri,j⩽100
 */
-public class Main {
-    //REVIEW @date 2023-11-14 重要！算法笔试中处理输入和输出
-    //在线io读写数据方法
+public class ACMInputAndOutput {
+    // REVIEW @date 2023-11-14 重要！ACM风格的输入和输出
+    // 在线io读写数据方法
     public static void main(String[] args) throws IOException {
         // 把文件读取到内存中
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,9 +41,10 @@ public class Main {
         StreamTokenizer in = new StreamTokenizer(br);
         // 提交答案用的内存托管区
         PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+        PrintWriter consoleOut = new PrintWriter(System.out); // PrintWriter for console output
         while (in.nextToken() != StreamTokenizer.TT_EOF) { // 文件没有结束就继续
             // n，二维数组的行
-            int n = (int) in.nval; //in.nval可以读出任何类型的数据
+            int n = (int) in.nval; // in.nval可以读出任何类型的数据
             in.nextToken();
             // m，二维数组的列
             int m = (int) in.nval;
@@ -55,13 +56,15 @@ public class Main {
                     mat[i][j] = (int) in.nval;
                 }
             }
-            out.println(maxSumSubmatrix(mat, n, m));
+            int ans = maxSumSubmatrix(mat, n, m);
+            out.println(ans);
+            consoleOut.println(ans);
+            consoleOut.flush();
         }
-        out.flush(); //把答案提交
+        out.flush(); // 把答案提交
         br.close();
         out.close();
     }
-
 
     // 求子矩阵的最大累加和，后面的课会讲
     public static int maxSumSubmatrix(int[][] mat, int n, int m) {
