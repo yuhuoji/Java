@@ -1,9 +1,4 @@
 /**
- * 包注释
- * 40 chapters
+ * todo 限制包外访问
  */
 package com.bilibili40;
-
-/*
- * 包常量
- */
