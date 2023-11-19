@@ -18,5 +18,6 @@ public class TestClass {
         for (var row : f) {
             Arrays.fill(row, 1);
         }
+
     }
 }

@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Comparator;
 
-public class DesignPrinciples {
+public class CodeDesignPrinciples {
     public class PersonAgeComparator implements Comparator<Person> {
         @Override
         public int compare(Person person1, Person person2) {

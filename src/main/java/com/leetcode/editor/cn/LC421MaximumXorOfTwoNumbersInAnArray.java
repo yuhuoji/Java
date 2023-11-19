@@ -20,7 +20,7 @@ public class LC421MaximumXorOfTwoNumbersInAnArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //REVIEW @date 2023-11-04
+        //REVIEW @date 2023-11-19 周赛371-Q2935
         //让第一位1出现在尽量左的位置
         public int findMaximumXOR(int[] nums) {
             int max = 0;
