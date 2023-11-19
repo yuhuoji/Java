@@ -5,7 +5,7 @@ import java.util.HashMap;
 // 前缀树/字典树
 // 动态
 // 测试链接 : https://leetcode.cn/problems/implement-trie-ii-prefix-tree/
-public class TrieTree {
+public class CodeTrieTree {
     // 数组实现路，存26个英文字母
     class Trie1 {
         private TrieNode root;

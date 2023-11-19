@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * @date 2023-02-23 14:26
  */
-public class BitAddSubtractMultiplyDivide {
+public class CodeBitAddSubtractMultiplyDivide {
     public int add(int a, int b) {
         int sum = a;
         while (b != 0) {

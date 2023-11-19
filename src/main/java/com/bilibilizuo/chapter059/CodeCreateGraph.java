@@ -3,7 +3,7 @@ package com.bilibilizuo.chapter059;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateGraph {
+public class CodeCreateGraph {
     //TODO @date 2023-11-12 链式前向星
     int[][] unWeightedGraph; // 邻接矩阵 带权
     // List<List<int[]>> weightedGraph; //邻接表

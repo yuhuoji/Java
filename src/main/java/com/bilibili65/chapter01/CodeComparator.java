@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * @date 2023-02-23 09:29
  */
-public class Comparator {
+public class CodeComparator {
     public int[] arrWithRandomLengthAndRandomValue(int maxLength, int maxValue) {
         int len = (int) (Math.random() * maxLength);
         int[] arr = new int[len];

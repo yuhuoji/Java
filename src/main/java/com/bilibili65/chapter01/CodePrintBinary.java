@@ -6,7 +6,7 @@ import org.junit.Test;
  * @date 2023-02-22 14:52
  * 位运算，输出32进制的数
  */
-public class PrintBinary {
+public class CodePrintBinary {
     public void print(int num) {
         for (int i = 31; i >= 0; i--) {
             //8 16 24

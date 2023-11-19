@@ -9,7 +9,7 @@ import java.util.HashMap;
  * 位图
  * int -> 00000000 00000000 00000000 00000000 -> 记录0~31是否出现过
  */
-public class Code_BitMap {
+public class CodeBitMap {
 
     public static class BitMap {
         //int -> 4byte -> 32bit, long -> 8byte -> 64bit

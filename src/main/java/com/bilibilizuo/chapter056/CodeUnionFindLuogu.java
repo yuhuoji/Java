@@ -6,7 +6,7 @@ import java.io.*;
 // 本实现用递归函数实现路径压缩(扁平化)，而且省掉了小挂大的优化(一般情况下可以省略)
 // 测试链接 : https://www.luogu.com.cn/problem/P3367
 //REVIEW @date 2023-11-18
-public class UnionFindLuogu {
+public class CodeUnionFindLuogu {
     public static int MAXN = 10001;
 
     public static int[] father = new int[MAXN];

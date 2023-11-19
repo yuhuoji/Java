@@ -8,7 +8,7 @@ import java.util.HashMap;
  * @date 2023-02-26 17:46
  * LRU
  */
-public class LeastRecentlyUsedCache {
+public class CodeLeastRecentlyUsedCache {
     @Test
     public void test() {
         MyCache<String, Integer> testCache = new MyCache<>(3);

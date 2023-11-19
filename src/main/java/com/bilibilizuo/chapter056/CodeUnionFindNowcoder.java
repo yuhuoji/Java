@@ -5,7 +5,7 @@ import java.io.*;
 // 并查集模版(牛客)
 // 两点优化: 路径压缩(扁平化) + 小挂大
 // 测试链接 : https://www.nowcoder.com/practice/e7ed657974934a30b2010046536a5372
-public class UnionFindNowcoder {
+public class CodeUnionFindNowcoder {
     public static int MAXN = 1000001;
 
     public static int[] father = new int[MAXN];

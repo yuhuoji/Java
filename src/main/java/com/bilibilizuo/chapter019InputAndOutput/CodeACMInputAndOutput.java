@@ -31,7 +31,7 @@ import java.io.*;
 209
 备注:1⩽N,M⩽200; −100⩽arri,j⩽100
 */
-public class ACMInputAndOutput {
+public class CodeACMInputAndOutput {
     // REVIEW @date 2023-11-14 重要！ACM风格的输入和输出
     // 在线io读写数据方法
     public static void main(String[] args) throws IOException {

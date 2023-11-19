@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * @date 2023-02-23 15:51
  */
-public class MinValue {
+public class CodeMinValue {
     //
     int a = Integer.MIN_VALUE;
     @Test
