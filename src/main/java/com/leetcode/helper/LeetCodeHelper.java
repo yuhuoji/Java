@@ -3,7 +3,7 @@ package com.leetcode.helper;
 import java.util.*;
 import java.util.regex.*;
 
-// TODO @date 2023-11-12 添加其他有效方法 stringToList
+// TODO @date 2023-11-20 添加其他有效方法 stringToList
 // List.of
 // use T in definitions
 public class LeetCodeHelper {
@@ -16,6 +16,26 @@ public class LeetCodeHelper {
     public static char[] stringToCharArray(String input) {
         input = input.replaceAll("[^a-zA-Z]", ""); // 只保留英文字母
         return input.toCharArray();
+    }
+
+    // 将字符串转换为二维整数数组
+    public static int[][] stringTo2DIntArray(String input) {
+        input = input.trim().replaceAll("\\[\\[|\\]\\]", "");
+        String[] rows = input.split("\\],\\[");
+        int numRows = rows.length;
+        if (numRows == 0) {
+            return new int[0][0];
+        }
+        String[] firstRow = rows[0].split(",");
+        int numCols = firstRow.length;
+        int[][] result = new int[numRows][numCols];
+        for (int i = 0; i < numRows; i++) {
+            String[] values = rows[i].split(",");
+            for (int j = 0; j < numCols; j++) {
+                result[i][j] = Integer.parseInt(values[j].trim());
+            }
+        }
+        return result;
     }
 
     // 将字符串转换为整数数组
