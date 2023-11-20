@@ -3,10 +3,9 @@ package com.bilibilizuo.chapter044;
 import java.util.HashMap;
 
 // 前缀树/字典树
-// 动态
+// 动态 类实现
 // 测试链接 : https://leetcode.cn/problems/implement-trie-ii-prefix-tree/
-// REVIEW @date 2023-11-19
-public class CodeTrieTree {
+public class Code1TrieTree {
     // 数组实现路，存26个英文字母
    private class Trie1 {
         public TrieNode root;

@@ -1,7 +1,5 @@
 package com.leetcode.editor.cn;
 
-import com.leetcode.helper.*;
-
 import java.util.*;
 
 // 2935 Maximum Strong Pair XOR II
@@ -13,9 +11,10 @@ public class LC2935MaximumStrongPairXorIi {
         int[] nums = {1, 2, 3, 4, 5};
         System.out.println(solution.maximumStrongPairXor(nums));
     }
+
     // REVIEW @date 2023-11-19 最大异或和
     // 前缀树
-
+    // TODO @date 2023-11-20 静态优化的trie
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         // 2*x>=y
@@ -28,11 +27,11 @@ public class LC2935MaximumStrongPairXorIi {
             int l = 0, ans = 0;
             for (int y : nums) {
                 trie.insert(y);
-                while (nums[l] * 2 < y) {
+                while (nums[l] * 2 < y) { // 2*x>=y
                     trie.erase(nums[l]);
                     l++;
                 }
-                ans = Math.max(ans, trie.maxXor(y));
+                ans = Math.max(ans, trie.getMaxXor(y));
             }
             return ans;
         }
@@ -62,8 +61,8 @@ public class LC2935MaximumStrongPairXorIi {
         }
 
         // 01trie
-        private class Trie {
-            final int HIGH_BIT = 19; // 0..19位
+        class Trie {
+            private final int HIGH_BIT = 19; // 0..19位
             public TrieNode root;
 
             public Trie() {
@@ -124,11 +123,12 @@ public class LC2935MaximumStrongPairXorIi {
                 return node.pass;
             }
 
-            public int maxXor(int num) {
+            // trie中与num最大的异或值
+            public int getMaxXor(int num) {
                 TrieNode node = root;
                 int ans = 0;
-                for (int i = HIGH_BIT; i >= 0; --i) {
-                    int path = (num >> i) & 1;
+                for (int i = HIGH_BIT; i >= 0; --i) { // 从高到低遍历
+                    int path = (num >> i) & 1; // 当前位的值 0 or 1
                     if (node.nexts[path ^ 1] != null) {
                         ans |= (1 << i);
                         path ^= 1;
@@ -138,7 +138,7 @@ public class LC2935MaximumStrongPairXorIi {
                 return ans;
             }
 
-            class TrieNode {
+            private class TrieNode {
                 public int pass;
                 public int end;
                 public TrieNode[] nexts;
