@@ -28,17 +28,17 @@ public class Leetcode19RemoveNthNodeFromEndOfList {
             slow = slow.next;
             --sz;
         }
-        //remove
+        // remove
         slow.next = slow.next.next;
         return head;
     }
 
-    //方法一：计算链表长度
+    // 方法一：计算链表长度
     public ListNode removeNthFromEnd1(ListNode head, int n) {
-        ListNode dummy = new ListNode(0, head); //添加哑节点（头节点），可以不用对头节点做额外判断
+        ListNode dummy = new ListNode(0, head); // 添加哑节点（头节点），可以不用对头节点做额外判断
         int length = getLength(head);
         ListNode p = dummy;
-        for (int i = 0; i < length - n + 1; ++i) { //到第length - n个节点
+        for (int i = 0; i < length - n + 1; ++i) { // 到第length - n个节点
             p = p.next;
         }
         p.next = p.next.next;
@@ -59,20 +59,20 @@ public class Leetcode19RemoveNthNodeFromEndOfList {
         ListNode dummy = new ListNode(0, head);
         Deque<ListNode> stack = new LinkedList<ListNode>();
         ListNode cur = dummy;
-        while (cur != null) { //全部入栈
+        while (cur != null) { // 全部入栈
             stack.push(cur);
             cur = cur.next;
         }
-        for (int i = 0; i < n; ++i) { //n个出栈
+        for (int i = 0; i < n; ++i) { // n个出栈
             stack.pop();
         }
-        ListNode prev = stack.peek(); //栈顶元素是要删除的前一个节点
+        ListNode prev = stack.peek(); // 栈顶元素是要删除的前一个节点
         prev.next = prev.next.next;
         return dummy.next;
     }
 
-    //方法三：双指针
-    //fast - slow = n
+    // 方法三：双指针
+    // fast - slow = n
     public ListNode removeNthFromEnd3(ListNode head, int n) {
         if (head == null || head.next == null) {
             return null;
@@ -83,13 +83,13 @@ public class Leetcode19RemoveNthNodeFromEndOfList {
         for (int i = 0; i < n + 1; ++i) {
             fast = fast.next;
         }
-        //fast和slow间隔n个节点
-        //slow指向待删除的前一个节点，fast指向null
+        // fast和slow间隔n个节点
+        // slow指向待删除的前一个节点，fast指向null
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
-        slow.next=slow.next.next;
+        slow.next = slow.next.next;
         return dummy.next;
     }
 
@@ -98,7 +98,7 @@ public class Leetcode19RemoveNthNodeFromEndOfList {
 
     }
 
-    public static class ListNode {
+    static class ListNode {
         int val;
 
         ListNode next;

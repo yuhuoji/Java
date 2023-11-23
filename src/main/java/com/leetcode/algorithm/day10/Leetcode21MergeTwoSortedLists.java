@@ -9,7 +9,7 @@ import java.util.Arrays;
  * 递归 / 回溯
  */
 public class Leetcode21MergeTwoSortedLists {
-    //方法一：递归
+    // 方法一：递归
     public ListNode mergeTwoLists1(ListNode list1, ListNode list2) {
         if (list1 == null) {
             return list2;
@@ -32,15 +32,15 @@ public class Leetcode21MergeTwoSortedLists {
             if (p1.val <= p2.val) {
                 pre.next = p1;
                 p1 = p1.next;
-            } else { //p1.val > p2.val
+            } else { // p1.val > p2.val
                 pre.next = p2;
                 p2 = p2.next;
             }
             pre = pre.next;
         }
-        //一个被合并完，一个没合并完
+        // 一个被合并完，一个没合并完
         pre.next = p1 == null ? p2 : p1;
-        //返回合并后的头节点
+        // 返回合并后的头节点
         return head.next;
     }
 
@@ -49,7 +49,7 @@ public class Leetcode21MergeTwoSortedLists {
 
     }
 
-    public static class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
 

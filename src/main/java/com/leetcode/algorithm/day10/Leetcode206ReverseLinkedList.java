@@ -5,14 +5,14 @@ package com.leetcode.algorithm.day10;
  */
 public class Leetcode206ReverseLinkedList {
 
-    //1->2->3->4->5->null
-    //null<-1<-2<-3<-4<-5
+    // 1->2->3->4->5->null
+    // null<-1<-2<-3<-4<-5
     public ListNode reverseList1(ListNode head) {
-        if (head == null || head.next == null) { //空或只有一个节点
+        if (head == null || head.next == null) { // 空或只有一个节点
             return head;
         }
         ListNode prev = null;
-        ListNode curr = head; //当前操作的节点
+        ListNode curr = head; // 当前操作的节点
         ListNode next;
         // prev  curr -> next
         // prev <- curr  next
@@ -25,16 +25,16 @@ public class Leetcode206ReverseLinkedList {
         return prev;
     }
 
-    //TODO 方法二：递归
-    //1->2->curr->4->5->null
+    // TODO 方法二：递归
+    // 1->2->curr->4->5->null
     public ListNode reverseList2(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        //1->2->curr->4->5->null
-        ListNode newHead = reverseList2(head.next); //黑盒
-        //1->2->curr->4<-5
+        // 1->2->curr->4->5->null
+        ListNode newHead = reverseList2(head.next); // 黑盒
+        // 1->2->curr->4<-5
 
         head.next.next = head;
         head.next = null;
@@ -42,7 +42,7 @@ public class Leetcode206ReverseLinkedList {
     }
 
     // Definition for singly-linked list.
-    public class ListNode {
+    class ListNode {
         int val;
         ListNode next;
 

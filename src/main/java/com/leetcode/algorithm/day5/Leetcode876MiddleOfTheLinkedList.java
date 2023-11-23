@@ -25,7 +25,7 @@ public class Leetcode876MiddleOfTheLinkedList {
         System.out.println();
     }
 
-    public static class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
 

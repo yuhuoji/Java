@@ -6,7 +6,7 @@ import org.junit.Test;
  * TODO 链表
  * 单链表，双向链表
  */
-public class LinkedList {
+public class CodeLinkedList {
 
     private ListNode head; //链表的头节点
 

@@ -21,26 +21,26 @@ public class IPO {
      * @return 你最后获得的最大钱数。
      */
     public int findMaximizedCapital(int k, int W, int[] profits, int[] capital) {
-        PriorityQueue<Node> minCostPriorityQueue = new PriorityQueue<>(new MinCostComparator()); //按花费的小根堆
-        PriorityQueue<Node> maxProfitPriorityQueue = new PriorityQueue<>(new MaxProfitComparator()); //按利润的大根堆
-        //所有项目项目加入小根堆，只有资金大于花费才会弹出
+        PriorityQueue<Node> minCostPriorityQueue = new PriorityQueue<>(new MinCostComparator()); // 按花费的小根堆
+        PriorityQueue<Node> maxProfitPriorityQueue = new PriorityQueue<>(new MaxProfitComparator()); // 按利润的大根堆
+        // 所有项目项目加入小根堆，只有资金大于花费才会弹出
         for (int i = 0; i < profits.length; i++) {
             maxProfitPriorityQueue.add(new Node(profits[i], capital[i]));
         }
-        for (int i = 0; i < k; i++) { //进行k轮
-            //能启动的项目都已经解锁了
-            while (!minCostPriorityQueue.isEmpty() && minCostPriorityQueue.peek().cost <= W) { //还有可以投资的项目且
+        for (int i = 0; i < k; i++) { // 进行k轮
+            // 能启动的项目都已经解锁了
+            while (!minCostPriorityQueue.isEmpty() && minCostPriorityQueue.peek().cost <= W) { // 还有可以投资的项目且
                 maxProfitPriorityQueue.add(minCostPriorityQueue.poll());
             }
-            if (minCostPriorityQueue.isEmpty()) { //所有项目都检查完了，终止
+            if (minCostPriorityQueue.isEmpty()) { // 所有项目都检查完了，终止
                 return W;
             }
-            W += maxProfitPriorityQueue.poll().profit; //贪心：选择当前满足资金的最大利润的项目 => 总体最优
+            W += maxProfitPriorityQueue.poll().profit; // 贪心：选择当前满足资金的最大利润的项目 => 总体最优
         }
         return W;
     }
 
-    public static class Node {
+    static class Node {
         public int cost;
         public int profit;
 
@@ -53,7 +53,7 @@ public class IPO {
         }
     }
 
-    //小根堆
+    // 小根堆
     public static class MinCostComparator implements Comparator<Node> {
         @Override
         public int compare(Node o1, Node o2) {
@@ -61,7 +61,7 @@ public class IPO {
         }
     }
 
-    //大根堆
+    // 大根堆
     public static class MaxProfitComparator implements Comparator<Node> {
         @Override
         public int compare(Node o1, Node o2) {
