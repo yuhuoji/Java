@@ -2,7 +2,7 @@ package com.leetcode.contest;
 
 import java.util.*;
 
-// TODO @date 2023-11-19
+//TODO @date 2023-11-25 Q4
 public class WeeklyContest372 {
     public static void main(String[] args) {
         WeeklyContest372 solution = new WeeklyContest372();
@@ -13,7 +13,6 @@ public class WeeklyContest372 {
         // String s = "00001";
         // System.out.println(solution.minimumSteps(s));
         // System.out.println(Math.pow(2,50));
-
 
         // a = 6, b = 7 , n = 5
         long a = 1, b = 6;
@@ -29,6 +28,7 @@ public class WeeklyContest372 {
         System.out.println();
     }
 
+    //2939. 最大异或乘积
 
     // 尽量填高位1, 让两个数尽量相近
     //(a XOR x) * (b XOR x)
@@ -41,7 +41,22 @@ public class WeeklyContest372 {
         return (int) (((long) (ans ^ a) % MOD * (ans ^ b) % MOD) % MOD);
     }
 
+    // 把0和1排序。0的视角或1的视角
+    // https://codeforces.com/problemset/problem/804/B
     public long minimumSteps(String s) {
+        long ans = 0;
+        int cnt1 = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '1') {
+                cnt1++;
+            } else {
+                ans += cnt1;
+            }
+        }
+        return ans;
+    }
+
+    public long minimumSteps1(String s) {
         int n = s.length();
         long cnt = 0;
         int l = 0, r = n - 1;
@@ -64,32 +79,15 @@ public class WeeklyContest372 {
     }
 
     // 100131. 使三个字符串相等
-    // 至少第一位要相同
+    // 最长公共前缀
     public int findMinimumOperations(String s1, String s2, String s3) {
-        if (s1.equals(s2) && s2.equals(s3)) {
-            return 0;
-        }
         int n1 = s1.length(), n2 = s2.length(), n3 = s3.length();
-        // 第一位相同
-        if (!s1.substring(0, 1).equals(s2.substring(0, 1)) ||
-                !s1.substring(0, 1).equals(s3.substring(0, 1)) ||
-                !s2.substring(0, 1).equals(s3.substring(0, 1))) {
-            return -1;
+        int n = Math.min(Math.min(n1, n2), n3);
+        int i = 0;
+        while (i < n && s2.charAt(i) == s1.charAt(i) && s3.charAt(i) == s1.charAt(i)) {
+            i++;
         }
-
-        int minLen = Math.min(n1, Math.min(n2, n3)); // 最小长度
-
-        // len>=2
-        char[] c1 = s1.toCharArray();
-        char[] c2 = s2.toCharArray();
-        char[] c3 = s3.toCharArray();
-        int cur = 1; //[0,cur)相等
-        // 找到第一个不相等的位置
-        while (cur < minLen && c1[cur] == c2[cur] && c1[cur] == c3[cur] && c2[cur] == c3[cur]) {
-            cur++;
-        }
-
         // 否则，返回删除字符的总次数
-        return n1 + n2 + n3 - 3 * cur;
+        return i == 0 ? -1 : n1 + n2 + n3 - 3 * i;
     }
 }

@@ -31,7 +31,7 @@ public class Interview1115 {
         for (int r = 0; r < n; ++r) {
             int cur = chars[r] - 'a';
             while ((map & (1 << cur)) == (1 << cur)) { // 存在，左端点右移
-                map &= ~(1 << (chars[l] - 'a')); // 删除
+                map &= ~(1 << (chars[l] - 'a')); // 删除l字符
                 l++;
             }
 

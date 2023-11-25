@@ -45,7 +45,6 @@ public class WeeklyContest371 {
         return ans;
     }
 
-    // TODO @date 2023-11-18
     // 哈希表 or 01trie
     // LC 421 异或和
     // 2932. 找出强数对的最大异或值 I
