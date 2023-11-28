@@ -1,4 +1,5 @@
-//模块系统
-module Algorithm {
+// 模块系统
 
+module Algorithm {
+    requires junit;
 }
