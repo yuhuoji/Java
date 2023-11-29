@@ -12,6 +12,27 @@ public class LeetCodeHelper {
         return Integer.parseInt(input);
     }
 
+    // 将字符串(只包括英文字母)转换为二维字符数组
+    // String s = "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]]";
+    public static char[][] stringTo2DCharArray(String input) {
+        input = input.trim().replaceAll("\\[\\[|\\]\\]", "");
+        String[] rows = input.split("\\],\\[");
+        int numRows = rows.length;
+        if (numRows == 0) {
+            return new char[0][0];
+        }
+        String[] firstRow = rows[0].split(",");
+        int numCols = firstRow.length;
+        char[][] result = new char[numRows][numCols];
+        for (int i = 0; i < numRows; i++) {
+            String[] values = rows[i].split(",");
+            for (int j = 0; j < numCols; j++) {
+                result[i][j] = values[j].trim().charAt(1); // Adjusted index to skip the opening quote
+            }
+        }
+        return result;
+    }
+
     // 将字符串(只包括英文字母)转换为字符数组
     public static char[] stringToCharArray(String input) {
         input = input.replaceAll("[^a-zA-Z]", ""); // 只保留英文字母
