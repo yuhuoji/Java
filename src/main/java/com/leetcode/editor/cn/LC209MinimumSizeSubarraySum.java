@@ -2,6 +2,8 @@ package com.leetcode.editor.cn;
 
 import com.leetcode.helper.*;
 
+import java.util.Arrays;
+
 // 209 Minimum Size Subarray Sum
 public class LC209MinimumSizeSubarraySum {
     public static void main(String[] args) {
@@ -15,8 +17,36 @@ public class LC209MinimumSizeSubarraySum {
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        // 滑动窗口
+        // 暴力枚举 时间O(N^2)
+        // 所有元素均为正数
+        // 前缀和 + 二分查找 sum[r] - sum[l-1] >= t
+        // t+sum[l] <= sum[r+1]
+        // 时间O(NlogN)
         public int minSubArrayLen(int target, int[] nums) {
+            int n = nums.length;
+            int[] prefix = new int[n + 1]; //[i+1] 表示 0..i的前缀和
+            // prefix[0] = 0; //-1的前缀和
+            for (int i = 0; i < n; ++i) {
+                prefix[i + 1] = prefix[i] + nums[i];
+            }
+            int min = n + 1;
+            for (int l = 0; l < n; ++l) {
+                //[0,r]上找l-1
+                int t = target + prefix[l];
+                int index = Arrays.binarySearch(prefix, t); // 二分查找
+                if (index < 0) {
+                    index = ~index;
+                }
+                if (index <= n) {
+                    min = Math.min(min, index - l);
+                }
+            }
+            return min == n + 1 ? 0 : min;
+        }
+
+        // 滑动窗口
+        // 时间 O(N)
+        public int minSubArrayLen1(int target, int[] nums) {
             int n = nums.length;
             int l = 0;
             int ans = n + 1;
