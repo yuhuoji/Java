@@ -10,8 +10,8 @@ public class Code20230502 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StreamTokenizer in = new StreamTokenizer(br);
-        // PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
-        PrintStream out = System.out;
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+        PrintWriter consoleOut = new PrintWriter(System.out, true); // 注释
         while (in.nextToken() != StreamTokenizer.TT_EOF) {
             int n = (int) in.nval;
             in.nextToken();
@@ -51,7 +51,7 @@ public class Code20230502 {
             for (int i = 0; i < d; ++i) {
                 for (int j = 0; j < d; ++j) { // KT x V
                     for (int k = 0; k < d; ++k) {
-                        tmp[i][j] += (long) K[i][k] * V[k][j];
+                        tmp[i][j] += (long) K[k][i] * V[k][j];
                     }
                 }
             }
@@ -64,16 +64,18 @@ public class Code20230502 {
                     ans[i][j] *= W[i];
                 }
             }
-
+            // 答案
             for (int i = 0; i < n; ++i) {
                 for (int j = 0; j < d; ++j) {
                     out.println(ans[i][j] + " ");
+                    consoleOut.println(ans[i][j] + " "); // 注释
                 }
                 out.println();
+                consoleOut.println(); // 注释
             }
         }
-        // out.flush();
+        out.flush();
         br.close();
-        // out.close();
+        out.close();
     }
 }

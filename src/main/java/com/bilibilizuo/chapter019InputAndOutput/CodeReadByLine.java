@@ -9,9 +9,9 @@ import java.io.PrintWriter;
 // 测试链接 : https://www.nowcoder.com/exam/test/70070648/detail?pid=27976983
 // 按行读入
 public class CodeReadByLine {
-    public static String line;
-    public static String[] parts;
-    public static int sum;
+    static String line;
+    static String[] parts;
+    static int sum;
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
