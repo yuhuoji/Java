@@ -39,7 +39,7 @@ public class LC50PowxN {
                     ans *= x;
                 }
                 x *= x;
-                n >>= 1;
+                n /= 2;
             }
             return ans;
         }
