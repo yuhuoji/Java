@@ -4,6 +4,7 @@ import com.leetcode.helper.LeetCodeHelper;
 
 import java.util.*;
 
+// Q3Q4 中位数贪心
 public class WeeklyContest376 {
     public static void main(String[] args) {
         WeeklyContest376 solution = new WeeklyContest376();
@@ -21,6 +22,7 @@ public class WeeklyContest376 {
         return 0;
     }
 
+    // 2967
     //|nums[i] - x|尽量小
     // x尽量靠中间，离中位数最近的一个回文数
     // dp? 前n个
@@ -44,28 +46,42 @@ public class WeeklyContest376 {
         return true;
     }
 
-    // 100161. 划分数组并满足最大差限制
+    // 2966. 划分数组并满足最大差限制
     public int[][] divideArray(int[] nums, int k) {
         Arrays.sort(nums); // 和顺序没关系
         int n = nums.length;
         int[][] ans = new int[n / 3][3];
-
-        // i i+1 i+2
-        for (int i = 0; i < n; i += 3) {
-            int x = nums[i], y = nums[i + 1], z = nums[i + 2];
-            if (z - x > k) {
-                return new int[0][]; // 空数组
+        // i-2 i-1 i
+        for (int i = 2; i < n; i += 3) { // 枚举最后一个数
+            if (nums[i] - nums[i - 2] > k) {
+                return new int[][]{}; // 空数组
             }
-            ans[i / 3][i % 3] = x;
-            ans[i / 3][i % 3 + 1] = y;
-            ans[i / 3][i % 3 + 2] = z;
+            ans[i / 3] = new int[]{nums[i - 2], nums[i - 1], nums[i]};
         }
         return ans;
     }
 
-    // 100149. 找出缺失和重复的数字
-    // 和
+    // 2965. 找出缺失和重复的数字
     public int[] findMissingAndRepeatedValues(int[][] grid) {
+        int n = grid.length;
+        int[] cnt = new int[n * n + 1]; // 1..n^2
+        for (int[] row : grid) {
+            for (int x : row) {
+                cnt[x]++;
+            }
+        }
+        int a = 0, b = 0;
+        for (int i = 1; i <= n * n; ++i) {
+            if (cnt[i] == 2) {
+                a = i;
+            } else if (cnt[i] == 0) {
+                b = i;
+            }
+        }
+        return new int[]{a, b};
+    }
+
+    public int[] findMissingAndRepeatedValues1(int[][] grid) {
         int n = grid.length;
         Set<Integer> seen = new HashSet<>();
         int sum = 0;
