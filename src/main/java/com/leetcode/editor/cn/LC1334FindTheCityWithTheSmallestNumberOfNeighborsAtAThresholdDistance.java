@@ -12,7 +12,7 @@ public class LC1334FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistan
 
     }
 
-    // TODO @date 2023-12-27 floyd
+    // REVIEW @date 2023-12-31 多源最短路 Floyd
     // 递归 TLE
     // dfs(k,i,j)=min(dfs(k−1,i,j),dfs(k−1,i,k)+dfs(k−1,k,j))
     // 边界 dfs(-1,i,j) = weight(i,j) 表示 i直接连接j
@@ -39,7 +39,7 @@ public class LC1334FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistan
                         cnt++;
                     }
                 }
-                if (cnt <= minCnt) {
+                if (cnt <= minCnt) { // 到达城市数量最小，编号最大的
                     ans = i;
                     minCnt = cnt;
                 }

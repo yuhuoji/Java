@@ -1,25 +1,34 @@
 package com.leetcode.contest;
 
+import com.leetcode.helper.LeetCodeHelper;
+
 import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class BiweeklyContest120 {
     public static void main(String[] args) {
         BiweeklyContest120 solution = new BiweeklyContest120();
         int m = 6;
+        String s = "[300005055,352368231,311935527,315829776,327065463,388851949,319541150,397875604,311309167,391897750,366860048,359976490,325522439,390648914,359891976,369105322,350430086,398592583,354559219,372400239,344759294,379931363,308829137,335032174,336962933,380797651,378305476,336617902,393487098,301391791,394314232,387440261,316040738,388074503,396614889,331609633,374723367,380418460,349845809,318514711,308782485,308291996,375362898,397542455,397628325,392446446,368662132,378781533,372327607,378737987]";
+        int[] arr = LeetCodeHelper.stringToIntegerArray(s);
+        long sum1 = 0;
+        for (int x : arr) {
+            sum1 += x;
+        }
+        System.out.println(sum1);
+        long sum2 = Arrays.stream(arr).asLongStream().sum();
+        System.out.println(sum2);
     }
 
     // 2971. 找到最大周长的多边形
     public long largestPerimeter(int[] nums) {
         Arrays.sort(nums);
-        long sum = 0;
-        for (int x : nums) {
-            sum += x;
-        }
-        // sum = Arrays.stream(nums).sum(); // 求数组元素和
+        long sum = Arrays.stream(nums).asLongStream().sum(); // 求数组元素和
         int n = nums.length;
         for (int i = n - 1; i >= 1; --i) {
             int x = nums[i];
-            // sum-x左侧的元素和 x最大的边
+            // sum-x左侧的元素和 x 最大的边
             if (sum - x > x) {
                 return sum;
             }
