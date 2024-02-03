@@ -15,6 +15,7 @@ public class LC2982FindLongestSpecialSubstringThatOccursThriceIi {
 
     }
 
+    // TODO @date 2024-01-29
     // 按相同字母分组，然后分类讨论
     // max(a[0]−2, min(a[0]−1,a[1]), a[2])
     // leetcode submit region begin(Prohibit modification and deletion)
