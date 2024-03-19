@@ -13,6 +13,8 @@ public class WeeklyContest388 {
         System.out.println(solution.maximumHappinessSum(happiness, k));
     }
 
+    // 3077. K 个不相交子数组的最大能量值
+    // 划分型dp
     public long maximumStrength(int[] nums, int k) {
         return 0;
     }
