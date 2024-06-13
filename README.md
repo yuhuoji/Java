@@ -1,6 +1,6 @@
 # README
 
-- LeetCode Plugin
+- ## [Leetcode Editor](https://github.com/shuzijun/leetcode-editor)
 
 ```
 LC${question.frontendQuestionId}$!velocityTool.deleteWhitespace($!velocityTool.camelCaseName(${question.titleSlug}))
