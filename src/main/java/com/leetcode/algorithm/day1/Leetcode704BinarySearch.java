@@ -1,6 +1,6 @@
 package com.leetcode.algorithm.day1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 左闭右闭即[left, right] -> middle排除

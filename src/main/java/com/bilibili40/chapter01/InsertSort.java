@@ -1,6 +1,6 @@
 package com.bilibili40.chapter01;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 

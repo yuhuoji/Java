@@ -1,6 +1,6 @@
 package com.leetcode.algorithm.day6;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package com.leetcode.algorithm.day8;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;

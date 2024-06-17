@@ -1,6 +1,6 @@
 package com.bilibili40.chapter02;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /* 荷兰国旗问题partition */
 /* 快速排序1.0 2.0 平均时间复杂度O() 最坏时间复杂度O(N^2)*/

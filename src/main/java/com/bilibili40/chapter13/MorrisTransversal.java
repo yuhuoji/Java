@@ -1,6 +1,6 @@
 package com.bilibili40.chapter13;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Morris遍历

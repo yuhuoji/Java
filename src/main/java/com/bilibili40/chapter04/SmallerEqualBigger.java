@@ -1,6 +1,6 @@
 package com.bilibili40.chapter04;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /* 单链表分成小于，等于，大于部分； 原顺序不变 */
 

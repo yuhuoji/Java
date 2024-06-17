@@ -1,6 +1,6 @@
 package com.leetcode.algorithm.day5;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @date 2023-03-04 12:12

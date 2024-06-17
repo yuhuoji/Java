@@ -1,6 +1,6 @@
 package com.bilibili40.chapter10;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @date 2023-03-16 15:49
