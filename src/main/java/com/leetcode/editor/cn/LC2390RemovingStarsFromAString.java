@@ -13,9 +13,22 @@ public class LC2390RemovingStarsFromAString {
 
     }
 
+    // LC20 括号匹配
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String removeStars(String string) {
+            StringBuilder st = new StringBuilder();
+            for (char c : string.toCharArray()) {
+                if (c == '*') {
+                    st.deleteCharAt(st.length() - 1);
+                } else {
+                    st.append(c);
+                }
+            }
+            return st.toString();
+        }
+
+        public String removeStars1(String string) {
             char[] s = string.toCharArray();
             Deque<Character> st = new ArrayDeque<>();
             for (char c : s) {
