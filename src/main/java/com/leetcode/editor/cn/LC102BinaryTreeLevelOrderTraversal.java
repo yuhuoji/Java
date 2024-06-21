@@ -7,16 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-// 1161 最大层内元素和
-public class LC1161MaximumLevelSumOfABinaryTree {
+// 102 二叉树的层序遍历
+public class LC102BinaryTreeLevelOrderTraversal {
     public static void main(String[] args) {
-        System.out.println("Leetcode " + 1161);
-        Solution solution = new LC1161MaximumLevelSumOfABinaryTree().new Solution();
+        System.out.println("Leetcode " + 102);
+        Solution solution = new LC102BinaryTreeLevelOrderTraversal().new Solution();
 
     }
-
-    // 层序遍历
-
 // leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -35,30 +32,19 @@ public class LC1161MaximumLevelSumOfABinaryTree {
      * }
      */
     class Solution {
-        private int mx;
-        private int level;
-
-        public int maxLevelSum(TreeNode root) {
-            mx = root.val;
-            level = 1;
-            levelOrder(root);
-            return level;
-        }
-
-        public void levelOrder(TreeNode root) {
+        public List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> ans = new ArrayList<>();
             if (root == null) {
-                return;
+                return ans;
             }
             Queue<TreeNode> q = new ArrayDeque<>();
             q.add(root);
-            int curLevel = 1; // 当前所处层数
             while (!q.isEmpty()) {
                 int size = q.size();
-                int sum = 0;
+                ans.add(new ArrayList<>());
                 for (int i = 0; i < size; ++i) {
                     TreeNode node = q.poll();
-                    sum += node.val;
+                    ans.get(ans.size() - 1).add(node.val);
                     if (node.left != null) {
                         q.add(node.left);
                     }
@@ -66,12 +52,8 @@ public class LC1161MaximumLevelSumOfABinaryTree {
                         q.add(node.right);
                     }
                 }
-                if (sum > mx) {
-                    mx = sum;
-                    level = curLevel;
-                }
-                curLevel++;
             }
+            return ans;
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)
