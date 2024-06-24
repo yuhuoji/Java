@@ -12,7 +12,7 @@ public class LC450DeleteNodeInABst {
         Solution solution = new LC450DeleteNodeInABst().new Solution();
 
     }
-    // TODO @date 2024-06-21
+    // REVIEW @date 2024-06-24
     // 前驱或者后继替换
 // leetcode submit region begin(Prohibit modification and deletion)
 
@@ -32,24 +32,60 @@ public class LC450DeleteNodeInABst {
      * }
      */
     class Solution {
+        // 迭代
+        // 根据待删除结点的位置分类讨论
+        // 叶节点
+        // 有一个子节点
+        // 有两个子节点
         public TreeNode deleteNode(TreeNode root, int key) {
-            TreeNode cur = root, parent = null;
+            TreeNode cur = root, parent = null; // 保存删除节点的父节点
             while (cur != null && cur.val != key) {
-                if (cur.val < key) {
-                    cur = cur.right;
-                } else {
+                parent = cur; // 保存父节点
+                if (cur.val > key) {
                     cur = cur.left;
+                } else {
+                    cur = cur.right;
                 }
             }
-            // 找到节点或不存在
+            // 待删除节点不存在
             if (cur == null) {
-                return null;
-            }
-            if (cur.left == null && cur.right == null) {
-                cur = null;
                 return root;
-            } else if (cur.left == null) {
-
+            }
+            // 待删除节点存在
+            if (cur.left == null && cur.right == null) { // 叶节点
+                cur = null;
+            } else if (cur.left == null) { // 有一个子节点
+                cur = cur.right;
+            } else if (cur.right == null) {
+                cur = cur.left;
+            } else {
+                TreeNode successor = cur.right, successorParent = cur; // 用后继替换
+                // 找到后继
+                while (successor.left != null) {
+                    successorParent = successor;
+                    successor = successor.left;
+                }
+                // 删除后继
+                if (successorParent.val == cur.val) { // cur的右子节点就是后继
+                    successorParent.right = successor.right;
+                } else {
+                    successorParent.left = successor.right;
+                }
+                // 用后继替换被删除的节点
+                successor.left = cur.left;
+                successor.right = cur.right;
+                cur = successor; // 用后继替换
+            }
+            // 父节点的引用
+            if (parent == null) {
+                return cur;
+            } else {
+                if (parent.left != null && parent.left.val == key) {
+                    parent.left = cur;
+                } else {
+                    parent.right = cur;
+                }
+                return root;
             }
         }
 
