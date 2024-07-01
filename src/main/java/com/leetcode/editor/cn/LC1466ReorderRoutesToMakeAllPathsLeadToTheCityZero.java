@@ -11,11 +11,40 @@ public class LC1466ReorderRoutesToMakeAllPathsLeadToTheCityZero {
         Solution solution = new LC1466ReorderRoutesToMakeAllPathsLeadToTheCityZero().new Solution();
 
     }
-    // dfs
-    // bfs
+    // REVIEW @date 2024-07-01
+    // 图 dfs bfs
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // dfs
+        List<int[]>[] g;
+
+        public int minReorder(int n, int[][] connections) {
+            g = new ArrayList[n];
+            Arrays.setAll(g, v -> new ArrayList<>());
+            for (int[] e : connections) {
+                int from = e[0], to = e[1];
+                g[from].add(new int[]{to, 1}); // 正向
+                g[to].add(new int[]{from, 0}); // 反向
+            }
+            return dfs(0, -1);
+        }
+
+        private int dfs(int cur, int fa) {
+            int ans = 0;
+            for (int[] to : g[cur]) {
+                int son = to[0], dir = to[1];
+                if (son == fa) {
+                    continue;
+                }
+                ans += dir + dfs(son, cur);
+            }
+            return ans;
+        }
+    }
+
+    class Solution1 {
+        // bfs
         public int minReorder(int n, int[][] connections) {
             // 建图
             List<int[]>[] g = new ArrayList[n];

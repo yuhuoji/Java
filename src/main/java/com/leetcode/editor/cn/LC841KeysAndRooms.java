@@ -11,18 +11,33 @@ public class LC841KeysAndRooms {
         Solution solution = new LC841KeysAndRooms().new Solution();
 
     }
-    // TODO @date 2024-06-28
 
+    // REVIEW @date 2024-07-01
     // dfs or bfs
 // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        private List<List<Integer>> rooms;
+        private boolean[] visited;
+        private int num;
+
         // dfs
         public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-
+            int n = rooms.size();
+            this.rooms = rooms;
+            visited = new boolean[n];
+            num = 0;
+            dfs(0);
+            return num == n;
         }
 
-        private void dfs() {
-
+        private void dfs(int i) {
+            visited[i] = true;
+            num++;
+            for (int j : rooms.get(i)) {
+                if (!visited[j]) {
+                    dfs(j);
+                }
+            }
         }
     }
 
