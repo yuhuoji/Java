@@ -15,6 +15,7 @@ public class LC399EvaluateDivision {
     }
 
     // REVIEW @date 2024-07-01 并查集
+    // 一边查询一边修改结点指向是并查集的特色
     // LC990
 // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
