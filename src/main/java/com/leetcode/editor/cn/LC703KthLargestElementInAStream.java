@@ -6,7 +6,9 @@ import java.util.PriorityQueue;
 public class LC703KthLargestElementInAStream {
     public static void main(String[] args) {
         System.out.println("Leetcode " + 703);
-        KthLargest kthLargest = new LC703KthLargestElementInAStream().new KthLargest();
+        int k = 5;
+        int[] nums = {1, 2, 3, 4, 5};
+        KthLargest kthLargest = new LC703KthLargestElementInAStream().new KthLargest(k, nums);
 
     }
 

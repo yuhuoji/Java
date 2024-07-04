@@ -16,6 +16,7 @@ public class LC2542MaximumSubsequenceScore {
 
     // REVIEW @date 2024-07-03
     // 对nums2降序排序，遍历，如果nums1的和变大则可能更新答案
+    // 对下标数组indices排序，通过nums[indices[i]]访问
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public long maxScore(int[] nums1, int[] nums2, int k) {
@@ -31,7 +32,7 @@ public class LC2542MaximumSubsequenceScore {
                 sum += nums1[indices[i]];
                 heap.offer(nums1[indices[i]]);
             }
-            long ans = sum * nums2[indices[k - 1]]; // 降序排序，nums2[k - 1]是最小的
+            long ans = sum * nums2[indices[k - 1]]; // 降序排序，nums2[i]是最小的
             for (int i = k; i < n; ++i) {
                 int x = nums1[indices[i]];
                 if (x > heap.peek()) {

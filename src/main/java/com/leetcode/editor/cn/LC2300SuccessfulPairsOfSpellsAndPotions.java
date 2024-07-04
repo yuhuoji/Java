@@ -9,40 +9,36 @@ public class LC2300SuccessfulPairsOfSpellsAndPotions {
     public static void main(String[] args) {
         System.out.println("Leetcode " + 2300);
         Solution solution = new LC2300SuccessfulPairsOfSpellsAndPotions().new Solution();
-
+        System.out.println(Math.log10(Integer.MAX_VALUE));
+        System.out.println(Math.log10(Integer.MAX_VALUE) / Math.log10(2));
     }
-    // REVIEW @date 2023-12-15 二分
+    // REVIEW @date 2024-07-04 二分
+    // t >= a/b 转换 t > (a-1)/b
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // n*log(m)
         public int[] successfulPairs(int[] spells, int[] potions, long success) {
-            Arrays.sort(potions);
             int n = spells.length;
             int m = potions.length;
+            Arrays.sort(potions); // 排序，用二分
             int[] ans = new int[n];
             for (int i = 0; i < n; ++i) {
-                int target = (int) ((success - 1) / spells[i]); // 找第一个大于target的下标。可以只计算一次乘法
-                // if (potions[0] > target) { // 都可以
-                //     ans[i] = m;
-                //     continue;
-                // } else
-                if ((long) spells[i] * potions[m - 1] < success) { // 都不行
+                long target = (success - 1) / spells[i]; // 找到大于target
+                if (potions[m - 1] <= target) {
                     ans[i] = 0;
                     continue;
                 }
-                // 二分
-                int l = 0, r = m - 2; //[1,m-2]
-                // 循环不变量 <= [l,r] >
-                while (l <= r) { // 区间不为空
-                    int mid = ((r - l) >> 1) + l;
-                    if (potions[mid] <= target) {
-                        l = mid + 1;
+                int left = 0, right = m - 1;
+                while (left <= right) {
+                    int mid = ((right - left) >> 1) + left;
+                    if (potions[mid] > target) {
+                        right = mid - 1;
                     } else {
-                        r = mid - 1;
+                        left = mid + 1;
                     }
                 }
-                // l就是第一个大于target的下标
-                ans[i] = m - l;
+                ans[i] = m - left;
             }
             return ans;
         }
