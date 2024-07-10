@@ -11,7 +11,7 @@ public class LC2266CountNumberOfTexts {
         System.out.println(solution.countTexts(s));
     }
 
-    // REVIEW @date 2024-07-09 取模问题出错
+    // REVIEW @date 2024-07-09 int溢出，先转成long相加再取模再转回int
     // 分组循环找到相同的数 * 内部统计dp统计次数
     // 7 9 是4种
     // 其他为3种
@@ -29,7 +29,7 @@ public class LC2266CountNumberOfTexts {
             f[2] = g[2] = 2;
             f[3] = g[3] = 4;
             for (int i = 4; i < MX; ++i) {
-                f[i] = (int) (((long) f[i - 1] + f[i - 2] + f[i - 3]) % MOD); //！！！先转成long相加再转回int
+                f[i] = (int) (((long) f[i - 1] + f[i - 2] + f[i - 3]) % MOD); //！！！int溢出，先转成long相加再转回int
                 g[i] = (int) (((long) g[i - 1] + g[i - 2] + g[i - 3] + g[i - 4]) % MOD);
             }
         }
