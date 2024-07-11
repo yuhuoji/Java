@@ -13,36 +13,38 @@ public class LC3186MaximumTotalDamageWithSpellCasting {
     }
 
     // lc740
-// TODO @date 2024-07-10
+    // 扩展 选了x则[x-k,x+k]都不能选
+    // REVIEW @date 2024-07-11 值域打家劫舍
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        // f[i]=max(f[i-3]+arr[i]*cnt[arr[i]],f[i-1])
+        // f[i]在去重数组arr 0..i 上
+        // f[i] = max(f[i-1],f[j-1]+arr[i]*cnt[arr[i]]), j是最小的arr[j]>=arr[i]-2
+        // f[i+1] = max(f[i],f[j]+arr[i]*cnt[arr[i]]), j是最小的arr[j]>=arr[i]-2
+        // 返回f[n-1]
+
+        // ！找到j, 其中j是最小的arr[j]>=arr[i]-2， 可以用双指针
+        // f数组加1
         public long maximumTotalDamage(int[] nums) {
-            Arrays.sort(nums);
             Map<Integer, Integer> cnt = new HashMap<>();
-            // int[] arr = Arrays.stream(nums)    // 创建一个 IntStream
-            //         .distinct()       // 去重
-            //         .sorted()         // 排序
-            //         .toArray();       // 转回 int[]
-            List<Integer> arr = new ArrayList<>();
             for (int x : nums) {
-                cnt.put(x, cnt.getOrDefault(x, 0) + 1);
-                if (cnt.get(x) == 1) {
-                    arr.add(x);
-                }
+                // cnt.put(x, cnt.getOrDefault(x, 0) + 1);
+                cnt.merge(x, 1, Integer::sum); //!merge方法
             }
-            int n = arr.size();
-            int last = -2;
-            int[] f = new int[n + 3];
-            for (int i = 0; i < arr.size(); ++i) {
-                if (arr.get(i) - last <= 2) {
-                    f[i + 3] = Math.max(f[i + 1] + arr.get(i) * cnt.get(arr.get(i)), f[i + 2]);
-                } else {
-                    f[i + 3] = f[i + 2] + arr.get(i) * cnt.get(arr.get(i));
+            int[] arr = Arrays.stream(nums)    // 创建一个 IntStream
+                    .distinct()       // 去重
+                    .sorted()         // 排序
+                    .toArray();       // 转回 int[]
+            int n = cnt.size();
+            long[] f = new long[n + 1];
+           int k = 2; //
+            for (int i = 0, j = 0; i < n; ++i) {
+                int x = arr[i];
+                while (arr[j] < x - k) {
+                    j++;
                 }
-                last = arr.get(i);
+                f[i + 1] = Math.max(f[i], f[j] + (long) x * cnt.get(x));
             }
-            return f[n + 2];
+            return f[n];
         }
 
         public long maximumTotalDamage1(int[] power) {
