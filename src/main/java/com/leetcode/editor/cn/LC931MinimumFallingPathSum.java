@@ -12,12 +12,54 @@ public class LC931MinimumFallingPathSum {
 
     }
 
-    // f[i][j]到达i位置的路径和
-    // f[i][j]=min(f[i-1][j-1],f[i-1][j],f[i-1][j+1])+m[i][j]
-    // 返回min(f[m-1][j])
-// leetcode submit region begin(Prohibit modification and deletion)
+
+    // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // pre=f[r - 1][c]
+        public int minFallingPathSum22(int[][] matrix) {
+            int n = matrix.length;
+            int[] f = new int[n + 2];
+            System.arraycopy(matrix[0], 0, f, 1, n); // 复制matrix的第一行
+            f[0] = f[n + 1] = Integer.MAX_VALUE;
+            for (int r = 1; r < n; ++r) {
+                int pre = f[0];
+                for (int c = 0; c < n; ++c) {
+                    int tmp = f[c + 1]; //先保存当前格
+                    f[c + 1] = Math.min(Math.min(pre, f[c + 1]), f[c + 2]) + matrix[r][c];
+                    pre = tmp;
+                }
+            }
+            int ans = Integer.MAX_VALUE;
+            for (int c = 0; c < n; ++c) {
+                ans = Math.min(ans, f[c + 1]);
+            }
+            return ans;
+        }
+
+        // f[r][c]=min(f[r-1][c-1],f[r-1][c],f[r-1][c+1])+m[r][c]
+        // 边界 f[0][c]=m[0][c] f[r][-1]=f[r][n]=inf
+        // f最左侧和最右侧增加一列
+        // 增加后
+        // f[r][c+1]=min(f[r-1][c],f[r-1][c+1],f[r-1][c+2])+m[r][c]
+        // 边界 f[0][c]=m[0][c] f[r][-1]=f[r][n+1]=inf
         public int minFallingPathSum(int[][] matrix) {
+            int n = matrix.length;
+            int[][] f = new int[n][n + 2];
+            System.arraycopy(matrix[0], 0, f[0], 1, n); // 复制matrix的第一行
+            for (int r = 1; r < n; ++r) {
+                f[r - 1][0] = f[r - 1][n + 1] = Integer.MAX_VALUE;
+                for (int c = 0; c < n; ++c) {
+                    f[r][c + 1] = Math.min(Math.min(f[r - 1][c], f[r - 1][c + 1]), f[r - 1][c + 2]) + matrix[r][c];
+                }
+            }
+            int ans = Integer.MAX_VALUE;
+            for (int c = 0; c < n; ++c) {
+                ans = Math.min(ans, f[n - 1][c + 1]);
+            }
+            return ans;
+        }
+
+        public int minFallingPathSum12(int[][] matrix) {
             int n = matrix.length;
             int[] f = new int[n];
             for (int j = 0; j < n; ++j) {
@@ -40,7 +82,10 @@ public class LC931MinimumFallingPathSum {
             return Arrays.stream(f).min().getAsInt();
         }
 
-        public int minFallingPathSum1(int[][] matrix) {
+        // f[i][j]到达i位置的路径和
+        // f[i][j]=min(f[i-1][j-1],f[i-1][j],f[i-1][j+1])+m[i][j]
+        // 返回min(f[m-1][j])
+        public int minFallingPathSum11(int[][] matrix) {
             int n = matrix.length;
             int[][] f = new int[n][n];
             for (int j = 0; j < n; ++j) {
