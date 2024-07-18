@@ -24,14 +24,13 @@ public class LC1289MinimumFallingPathSumIi {
             System.arraycopy(grid[0], 0, f[0], 0, n); // 复制matrix的第一行
             for (int r = 1; r < n; ++r) {
                 for (int c = 0; c < n; ++c) {
-                    int res = Integer.MAX_VALUE;
+                    f[r][c] = Integer.MAX_VALUE;
                     for (int j = 0; j < n; ++j) { // 上一行
                         if (j == c) {
                             continue;
                         }
-                        res = Math.min(res, f[r - 1][j]);
+                        f[r][c] = Math.min(f[r][c], f[r - 1][j] + grid[r][c]);
                     }
-                    f[r][c] = res + grid[r][c];
                 }
             }
             int ans = Integer.MAX_VALUE;
