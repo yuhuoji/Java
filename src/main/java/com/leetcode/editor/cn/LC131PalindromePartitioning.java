@@ -14,8 +14,9 @@ public class LC131PalindromePartitioning {
 
     }
 
+    // REVIEW @date 2024-07-22 回溯模板 枚举选哪个
+
     // leetcode submit region begin(Prohibit modification and deletion)
-    // 枚举选哪个
     class Solution {
         private String s;
         private List<List<String>> ans;
