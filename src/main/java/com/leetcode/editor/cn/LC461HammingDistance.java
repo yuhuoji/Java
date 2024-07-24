@@ -12,11 +12,16 @@ public class LC461HammingDistance {
 
     }
 
-    // TODO @date 2024-07-23
-// leetcode submit region begin(Prohibit modification and deletion)
+    // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int hammingDistance(int x, int y) {
-
+            int xor = x ^ y;
+            int ans = 0;
+            while (xor != 0) {
+                ans += xor & 1;
+                xor >>>= 1;
+            }
+            return ans;
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)
