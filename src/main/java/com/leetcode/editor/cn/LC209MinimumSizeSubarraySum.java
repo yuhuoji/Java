@@ -17,12 +17,28 @@ public class LC209MinimumSizeSubarraySum {
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // 滑动窗口
+        // 时间 O(N)
+        public int minSubArrayLen(int target, int[] nums) {
+            int n = nums.length;
+            int sum = 0;
+            int ans = n + 1;
+            for (int l = 0, r = 0; r < n; ++r) {
+                sum += nums[r];
+                while (sum >= target) {
+                    ans = Math.min(ans, r - l + 1);
+                    sum -= nums[l++];
+                }
+            }
+            return ans == n + 1 ? 0 : ans;
+        }
+
         // 暴力枚举 时间O(N^2)
         // 所有元素均为正数
         // 前缀和 + 二分查找 sum[r] - sum[l-1] >= t
         // t+sum[l] <= sum[r+1]
         // 时间O(NlogN)
-        public int minSubArrayLen(int target, int[] nums) {
+        public int minSubArrayLen2(int target, int[] nums) {
             int n = nums.length;
             int[] prefix = new int[n + 1]; //[i+1] 表示 0..i的前缀和
             // prefix[0] = 0; //-1的前缀和
@@ -42,23 +58,6 @@ public class LC209MinimumSizeSubarraySum {
                 }
             }
             return min == n + 1 ? 0 : min;
-        }
-
-        // 滑动窗口
-        // 时间 O(N)
-        public int minSubArrayLen1(int target, int[] nums) {
-            int n = nums.length;
-            int l = 0;
-            int ans = n + 1;
-            int sum = 0;
-            for (int r = 0; r < n; ++r) {
-                sum += nums[r];
-                while (sum >= target) {
-                    ans = Math.min(ans, r - l + 1);
-                    sum -= nums[l++];
-                }
-            }
-            return ans == n + 1 ? 0 : ans;
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)
