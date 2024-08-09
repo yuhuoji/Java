@@ -17,6 +17,7 @@ public class LC76MinimumWindowSubstring {
     //s包括t
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //时间复杂度O(m+n)
         public String minWindow(String s, String t) {
             int sLen = s.length();
             int tLen = t.length();
@@ -56,7 +57,9 @@ public class LC76MinimumWindowSubstring {
         }
     }
 
+
     class Solution1 {
+        //时间复杂度O(∑m+n)
         public String minWindow(String s, String t) {
             int sLen = s.length();
             int tLen = t.length();

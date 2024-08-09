@@ -11,7 +11,7 @@ public class LC435NonOverlappingIntervals {
         System.out.println("Leetcode " + 435);
         Solution solution = new LC435NonOverlappingIntervals().new Solution();
         String s = "[[1,3],[2,3],[3,4],[1,2]]";
-        int[][] intervals = LeetCodeHelper.stringTo2DIntArray(s);
+        int[][] intervals = LeetCodeHelper.stringTo2DIntegerArray(s);
         Arrays.sort(intervals, Comparator.comparingInt(v -> v[0]));
         System.out.println(Arrays.deepToString(intervals)); // 打印多维数组
         // System.out.println(solution.eraseOverlapIntervals(LeetCodeHelper.stringTo2DIntArray(intervals)));
