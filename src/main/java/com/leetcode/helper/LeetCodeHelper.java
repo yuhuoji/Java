@@ -1,7 +1,6 @@
 package com.leetcode.helper;
 
 import java.util.*;
-import java.util.regex.*;
 
 // TODO @date 2023-11-20 添加其他有效方法 stringToList
 // List.of
@@ -39,8 +38,8 @@ public class LeetCodeHelper {
         return input.toCharArray();
     }
 
-    // 将字符串转换为二维整数数组
-    public static int[][] stringTo2DIntArray(String input) {
+    // 将二维整数数组表示的字符串转换为二维整数数组
+    public static int[][] stringTo2DIntegerArray(String input) {
         input = input.trim().replaceAll("\\[\\[|\\]\\]", "");
         String[] rows = input.split("\\],\\[");
         int numRows = rows.length;
@@ -149,23 +148,6 @@ public class LeetCodeHelper {
     // 将字符串转换为布尔值
     public static boolean stringToBool(String input) {
         return input.equalsIgnoreCase("true");
-    }
-
-    // 将二维整数数组表示的字符串转换为二维整数数组
-    public static int[][] stringTo2DIntegerArray(String input) {
-        Pattern pattern = Pattern.compile("\\[\\[([^]]+)\\],?\\s?\\[([^]]+)\\]\\]");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.find()) {
-            String[] arr1 = matcher.group(1).split(",");
-            String[] arr2 = matcher.group(2).split(",");
-            int[][] result = new int[2][arr1.length];
-            for (int i = 0; i < arr1.length; i++) {
-                result[0][i] = Integer.parseInt(arr1[i].trim());
-                result[1][i] = Integer.parseInt(arr2[i].trim());
-            }
-            return result;
-        }
-        return new int[][]{};
     }
 
     // 将二维整数数组转换为二维整数数组表示的字符串
