@@ -9,6 +9,9 @@ public class LC206ReverseLinkedList {
         Solution solution = new LC206ReverseLinkedList().new Solution();
 
     }
+    // REVIEW @date 2024-08-16 递归
+    // 递归 三部分 1.递归结束条件 2.进行的递归操作 3.返回值
+
 // leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -22,14 +25,12 @@ public class LC206ReverseLinkedList {
      * }
      */
     class Solution {
-        // 递归 三部分 1.递归结束条件 2.进行的递归操作 3.返回值
+        // 递归
         public ListNode reverseList(ListNode head) {
             if (head == null || head.next == null) {
                 return head;
             }
-
             ListNode newHead = reverseList(head.next);
-
             head.next.next = head;
             head.next = null;
             return newHead;
@@ -37,7 +38,7 @@ public class LC206ReverseLinkedList {
 
         // 迭代
         public ListNode reverseList1(ListNode head) {
-            ListNode pre = null, cur = head, nxt;
+            ListNode pre = null, cur = head, nxt = null;
             while (cur != null) {
                 nxt = cur.next;
                 cur.next = pre;
@@ -46,6 +47,7 @@ public class LC206ReverseLinkedList {
             }
             return pre;
         }
+
     }
 // leetcode submit region end(Prohibit modification and deletion)
 
