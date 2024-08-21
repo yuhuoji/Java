@@ -9,6 +9,8 @@ public class LC24SwapNodesInPairs {
         Solution solution = new LC24SwapNodesInPairs().new Solution();
 
     }
+    // lc25 k个一组翻转链表
+
 // leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -22,7 +24,8 @@ public class LC24SwapNodesInPairs {
      * }
      */
     class Solution {
-        public ListNode swapPairs(ListNode head) {
+
+        public ListNode swapPairs2(ListNode head) {
             ListNode dummy = new ListNode(0, head);
             ListNode p0 = dummy, node1 = head;
             while (node1 != null && node1.next != null) {
@@ -37,7 +40,6 @@ public class LC24SwapNodesInPairs {
             }
             return dummy.next;
         }
-
 
         // k个一组反转链表
         public ListNode swapPairs1(ListNode head) {
@@ -67,6 +69,30 @@ public class LC24SwapNodesInPairs {
                 p0 = nxt;
             }
 
+            return dummy.next;
+        }
+
+        public ListNode swapPairs(ListNode head) {
+            int n = 0;
+            for (ListNode cur = head; cur != null; cur = cur.next) {
+                n++;
+            }
+            ListNode dummy = new ListNode(0, head);
+            ListNode p0 = dummy;
+            ListNode pre = null, cur = head, nxt;
+            int k = 2;
+            for (; n >= k; n -= k) {
+                for (int i = 0; i < k; ++i) {
+                    nxt = cur.next;
+                    cur.next = pre;
+                    pre = cur;
+                    cur = nxt;
+                }
+                nxt = p0.next;
+                p0.next.next = cur;
+                p0.next = pre;
+                p0 = nxt;
+            }
             return dummy.next;
         }
     }
