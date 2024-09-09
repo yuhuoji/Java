@@ -40,7 +40,7 @@ public class LC21MergeTwoSortedLists {
                     pre = pre.next;
                 }
             }
-            pre.next = list1 == null ? list2 : list1;
+            pre.next = list1 != null ? list1 : list2;
             return dummy.next;
         }
     }
