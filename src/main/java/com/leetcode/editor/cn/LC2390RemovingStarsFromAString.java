@@ -1,10 +1,11 @@
 package com.leetcode.editor.cn;
 
+import com.leetcode.helper.*;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Queue;
 
-// 2390 Removing Stars From a String
+// 2390 从字符串中移除星号
 public class LC2390RemovingStarsFromAString {
     public static void main(String[] args) {
         System.out.println("Leetcode " + 2390);
@@ -12,22 +13,34 @@ public class LC2390RemovingStarsFromAString {
 
     }
 
+    // LC20 括号匹配
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String removeStars(String string) {
-            char[] s = string.toCharArray();
-            int n = s.length;
-            Deque<Character> stk = new ArrayDeque<>();
-            for (int i = 0; i < n; ++i) {
-                if (s[i] != '*') {
-                    stk.push(s[i]);
+            StringBuilder st = new StringBuilder();
+            for (char c : string.toCharArray()) {
+                if (c == '*') {
+                    st.deleteCharAt(st.length() - 1);
                 } else {
-                    stk.pop();
+                    st.append(c);
+                }
+            }
+            return st.toString();
+        }
+
+        public String removeStars1(String string) {
+            char[] s = string.toCharArray();
+            Deque<Character> st = new ArrayDeque<>();
+            for (char c : s) {
+                if (c == '*') {
+                    st.pop();
+                } else {
+                    st.push(c);
                 }
             }
             StringBuilder sb = new StringBuilder();
-            for (char c : stk) {
-                sb.insert(0, stk.pop());
+            while (!st.isEmpty()) {
+                sb.insert(0, st.pop());
             }
             return sb.toString();
         }

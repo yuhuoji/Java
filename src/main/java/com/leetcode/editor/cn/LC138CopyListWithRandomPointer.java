@@ -28,21 +28,52 @@ public class LC138CopyListWithRandomPointer {
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // 三步，新建，random，分离
+        public Node copyRandomList(Node head) {
+            if (head == null) {
+                return null;
+            }
+            // 新建
+            Node cur = head, nxt;
+            while (cur != null) {
+                nxt = cur.next;
+                cur.next = new Node(cur.val);
+                cur.next.next = nxt;
+                cur = cur.next.next;
+            }
+            // random指针
+            cur = head;
+            while (cur != null) {
+                if (cur.random != null) {
+                    cur.next.random = cur.random.next;
+                }
+                cur = cur.next.next;
+            }
+            // 分离
+            Node newHead = head.next;
+            cur = head;
+            Node p = head.next; // 新链表
+            while (p.next != null) { // 后边还有节点
+                cur.next = cur.next.next;
+                p.next = p.next.next;
+                cur = cur.next;
+                p = p.next;
+            }
+            cur.next = null;
+            return newHead;
+        }
+
         // 哈希表 原节点-新节点
         // mp.get(old) = new
         // mp.get(old.next) = new.next
         // mp.get(old.random) = new.random
-        public Node copyRandomList(Node head) {
+        public Node copyRandomList2(Node head) {
             Map<Node, Node> mp = new HashMap<>();
-            Node cur = head;
-            while (cur != null) {
+            for (Node cur = head; cur != null; cur = cur.next) {
                 mp.put(cur, new Node(cur.val));
-                cur = cur.next;
             }
-
-            cur = head;
-            Node newNode;
-            while (cur != null) { // old
+            Node cur = head, newNode;
+            for (; cur != null; cur = cur.next) {
                 newNode = mp.get(cur);
                 if (cur.next != null) {
                     newNode.next = mp.get(cur.next);
@@ -50,10 +81,8 @@ public class LC138CopyListWithRandomPointer {
                 if (cur.random != null) {
                     newNode.random = mp.get(cur.random);
                 }
-                cur = cur.next;
             }
-
-            return mp.get(head); // 返回新头
+            return mp.get(head);
         }
 
         // 三步，新建，random，分离

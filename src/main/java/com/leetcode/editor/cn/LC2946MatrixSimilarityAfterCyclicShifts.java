@@ -9,7 +9,7 @@ public class LC2946MatrixSimilarityAfterCyclicShifts {
         Solution solution = new LC2946MatrixSimilarityAfterCyclicShifts().new Solution();
         String s = "[[2,2],[2,2]]";
         int k = 3;
-        System.out.println(solution.areSimilar(LeetCodeHelper.stringTo2DIntArray(s), k));
+        System.out.println(solution.areSimilar(LeetCodeHelper.stringTo2DIntegerArray(s), k));
     }
 
     // leetcode submit region begin(Prohibit modification and deletion)

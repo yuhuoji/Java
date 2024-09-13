@@ -12,60 +12,55 @@ public class LC63UniquePathsIi {
         // System.out.println(solution.uniquePathsWithObstacles(nums));
     }
 
+    //[[0],[1]]
+    //[[0,0],[1,0]]
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        // dp = 0 表示无法到达, 从无法到达的位置出发到达的位置，也是无法到达的
-        public int uniquePathsWithObstacles2(int[][] obstacleGrid) {
-            int m = obstacleGrid.length;
-            int n = obstacleGrid[0].length;
-            int[] dp = new int[n]; // 初始化为0，默认所有位置都不能到达
-            dp[0] = obstacleGrid[0][0] == 1 ? 0 : 1; // 起点有障碍物则其余位置都不能到达
-            for (int i = 0; i < m; ++i) {
-                for (int j = 0; j < n; ++j) {
-                    if (obstacleGrid[i][j] == 1) {
-                        dp[j] = 0;
-                        continue;
-                    }
-                    if (j - 1 >= 0) {
-                        dp[j] += dp[j - 1];
-                    }
-                }
-            }
-            return dp[n - 1];
-        }
-
-        // 到达的方法数
-        // f[i][j] 表示无法到达
-        // f[i][j] = f[i-1][j] + f[i][j-1]
         public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-            int m = obstacleGrid.length;
-            int n = obstacleGrid[0].length;
+            int m = obstacleGrid.length, n = obstacleGrid[0].length;
             if (obstacleGrid[0][0] == 1 || obstacleGrid[m - 1][n - 1] == 1) {
                 return 0;
             }
-            int[][] dp = new int[m][n]; // 初始化为0
-
-            dp[0][0] = 1;
-            for (int i = 1; i < m && obstacleGrid[i][0] == 0; ++i) {  // 第一列
-                dp[i][0] = 1;
+            int[] f = new int[n];
+            for (int j = 0; j < n && obstacleGrid[0][j] != 1; ++j) {
+                f[j] = 1;
             }
-
-            for (int j = 1; j < n && obstacleGrid[0][j] == 0; ++j) { // 第一行
-                dp[0][j] = 1;
-            }
-
             for (int i = 1; i < m; ++i) {
+                f[0] = obstacleGrid[i][0] != 1 && f[0] == 1 ? 1 : 0;
                 for (int j = 1; j < n; ++j) {
-                    if (obstacleGrid[i][j] == 1) {
-                        dp[i][j] = 0; // 0种方法到达，表示无法到达
-                        continue;
+                    if (obstacleGrid[i][j] != 1) {
+                        f[j] = f[j - 1] + f[j];
+                    } else {
+                        f[j] = 0; // 需要重新更新为0
                     }
-                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]; // 左+上
                 }
             }
-            return dp[m - 1][n - 1];
+            return f[n - 1];
+        }
+
+        // 到达（i,j）位置的方法数 f[i][j]
+        // f[i][j]=f[i][j-1]+f[i-1][j]
+        public int uniquePathsWithObstacles1(int[][] obstacleGrid) {
+            int m = obstacleGrid.length, n = obstacleGrid[0].length;
+            if (obstacleGrid[0][0] == 1 || obstacleGrid[m - 1][n - 1] == 1) {
+                return 0;
+            }
+            int[][] f = new int[m][n];
+            for (int i = 0; i < m && obstacleGrid[i][0] != 1; ++i) {
+                f[i][0] = 1;
+            }
+            for (int j = 1; j < n && obstacleGrid[0][j] != 1; ++j) {
+                f[0][j] = 1;
+            }
+            for (int i = 1; i < m; ++i) {
+                for (int j = 1; j < n; ++j) {
+                    if (obstacleGrid[i][j] != 1) {
+                        f[i][j] = f[i][j - 1] + f[i - 1][j];
+                    }
+                }
+            }
+            return f[m - 1][n - 1];
         }
     }
     // leetcode submit region end(Prohibit modification and deletion)
-
 }

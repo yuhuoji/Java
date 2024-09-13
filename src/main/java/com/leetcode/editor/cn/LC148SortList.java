@@ -10,7 +10,8 @@ public class LC148SortList {
         String s = "[4,2,1,3]";
         System.out.println(solution.sortList(LeetCodeHelper.stringToListNode(s)));
     }
-    // REVIEW @date 2023-11-22
+    //TODO @date 2024-08-21
+
 // leetcode submit region begin(Prohibit modification and deletion)
 
     /**
@@ -23,7 +24,7 @@ public class LC148SortList {
      * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
-    class Solution {
+    class Solution2 {
         // 迭代
         // 自底向上
         public ListNode sortList(ListNode head) {
@@ -91,10 +92,39 @@ public class LC148SortList {
         }
     }
 
-    // leetcode submit region end(Prohibit modification and deletion)
-    class Solution1 {
-        // 递归
+    class Solution {
         public ListNode sortList(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode dummy = new ListNode(0, head);
+            ListNode fast = head, slow = dummy;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            ListNode secondHead = slow.next;
+            slow.next = null;
+            head = sortList(head);
+            secondHead = sortList(secondHead);
+            ListNode pre = dummy, p1 = head, p2 = secondHead;
+            while (p1 != null && p2 != null) {
+                if (p1.val < p2.val) {
+                    pre.next = p1;
+                    p1 = p1.next;
+                } else {
+                    pre.next = p2;
+                    p2 = p2.next;
+                }
+                pre = pre.next;
+            }
+            pre.next = p2 == null ? p1 : p2;
+            return dummy.next;
+        }
+
+
+        // 递归
+        public ListNode sortList1(ListNode head) {
             if (head == null || head.next == null) {
                 return head;
             }
@@ -129,4 +159,7 @@ public class LC148SortList {
             return dummy.next;
         }
     }
+
+    // leetcode submit region end(Prohibit modification and deletion)
+
 }

@@ -13,15 +13,15 @@ public class LC215KthLargestElementInAnArray {
         Solution solution = new LC215KthLargestElementInAnArray().new Solution();
 
     }
-    //TODO @date 2023-11-23
+    // TODO @date 2023-11-23
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         // 最小堆维护最大的k个元素
         // n*log(k)
+
         public int findKthLargest(int[] nums, int k) {
-            int n = nums.length;
-            PriorityQueue<Integer> heap = new PriorityQueue<>(k + 1); // 最小堆
+            PriorityQueue<Integer> heap = new PriorityQueue<>(k + 1);
             for (int x : nums) {
                 heap.add(x);
                 if (heap.size() > k) {
