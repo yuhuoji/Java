@@ -12,7 +12,7 @@ public class LC2352EqualRowAndColumnPairs {
         System.out.println("Leetcode " + 2352);
         Solution solution = new LC2352EqualRowAndColumnPairs().new Solution();
         String s = "[[3,2,1],[1,7,6],[2,7,7]]";
-        System.out.println(solution.equalPairs(LeetCodeHelper.stringTo2DIntArray(s)));
+        System.out.println(solution.equalPairs(LeetCodeHelper.stringTo2DIntegerArray(s)));
         int[] arr = new int[]{1, 2, 3, 4};
         System.out.println(Arrays.toString(arr));
     }
