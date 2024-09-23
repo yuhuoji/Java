@@ -14,76 +14,79 @@ public class LC146LruCache {
 
     }
 
+    // REVIEW @date 2024-09-20
     // 双向链表+哈希表=哈希链表 LinkedHashMap
-    // 哈希表O(1)
-    // 链表维持时序
-    // leetcode submit region begin(Prohibit modification and deletion)
+    // 哈希表保证O(1) 链表维持时序
 
+    // leetcode submit region begin(Prohibit modification and deletion)
     class LRUCache {
+
         private final int capacity;
-        private final DoubleNode dummy = new DoubleNode(0, 0);
-        private final Map<Integer, DoubleNode> keyToNode = new HashMap<>();
+
+        private final Node dummy = new Node();
+        private Map<Integer, Node> keyToNode = new HashMap<>();
 
         public LRUCache(int capacity) {
             this.capacity = capacity;
-            dummy.next = dummy;
             dummy.prev = dummy;
+            dummy.next = dummy;
         }
 
         public int get(int key) {
-            DoubleNode node = getNode(key);
-            return node != null ? node.value : -1; // 没有则返回-1
+            Node node = getNode(key);
+            return node != null ? node.value : -1;
         }
 
+        // 先插入，如果超过容量再删除
         public void put(int key, int value) {
-            DoubleNode node = getNode(key);
-            if (node != null) { // 如果有只需要更新节点的值
+            Node node = getNode(key);
+            if (node != null) {
                 node.value = value;
                 return;
             }
-            // 原来没有节点
-            node = new DoubleNode(key, value);
-            keyToNode.put(key, node); // 加入哈希表
-            pushFront(node); // 插入链表
-            if (keyToNode.size() > capacity) { // 超出容量，就删除最后一个节点
-                DoubleNode lastNode = dummy.prev;
-                keyToNode.remove(lastNode.key);
-                removeNode(lastNode);
+            node = new Node(key, value);
+            keyToNode.put(key, node);
+            pushFront(node);
+            if (keyToNode.size() > capacity) {
+                Node backNode = dummy.prev;
+                keyToNode.remove(backNode.key);
+                removeNode(backNode);
             }
         }
 
-        // 返回节点，没有则返回null
-        // 移动到头部
-        private DoubleNode getNode(int key) {
+        // 取得节点
+        private Node getNode(int key) {
             if (!keyToNode.containsKey(key)) {
                 return null;
             }
-            DoubleNode node = keyToNode.get(key);
+            Node node = keyToNode.get(key);
             removeNode(node);
             pushFront(node);
             return node;
         }
 
-        // 在链表头插新节点
-        private void pushFront(DoubleNode node) {
-            node.prev = dummy;
-            node.next = dummy.next;
-            node.prev.next = node;
-            node.next.prev = node;
+        // 从链表中删除节点
+        private void removeNode(Node x) {
+            x.prev.next = x.next;
+            x.next.prev = x.prev;
         }
 
-        // 删除一个节点
-        private void removeNode(DoubleNode node) {
-            node.prev.next = node.next;
-            node.next.prev = node.prev;
+        // 在链表头部添加节点
+        private void pushFront(Node x) {
+            x.prev = dummy;
+            x.next = dummy.next;
+            x.prev.next = x;
+            x.next.prev = x;
         }
 
-        // 双向链表节点
-        private class DoubleNode {
+        private static class Node {
             int key, value;
-            DoubleNode prev, next;
+            Node prev, next;
 
-            DoubleNode(int key, int value) {
+            Node() {
+            }
+
+            Node(int key, int value) {
                 this.key = key;
                 this.value = value;
             }
@@ -97,6 +100,7 @@ public class LC146LruCache {
      * obj.put(key,value);
      */
 // leetcode submit region end(Prohibit modification and deletion)
+
     class LRUCache1 {
         private int capacity;
         private Map<Integer, DoubleNode> keyNodeMap; // 操作时间O(1)

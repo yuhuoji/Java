@@ -26,9 +26,9 @@ public class LC23MergeKSortedLists {
      * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
-    class Solution {
+    class Solution2 {
         public ListNode mergeKLists(ListNode[] lists) {
-            PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.val)); // 可能是最小节点
+            PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(node -> node.val));
             for (ListNode head : lists) {
                 if (head != null) {
                     pq.offer(head);
@@ -37,9 +37,9 @@ public class LC23MergeKSortedLists {
             ListNode dummy = new ListNode();
             ListNode pre = dummy;
             while (!pq.isEmpty()) {
-                ListNode node = pq.poll(); // 当前最小节点
+                ListNode node = pq.poll();
                 if (node.next != null) {
-                    pq.offer(node.next); // 下一个节点可能是最小节点
+                    pq.offer(node.next);
                 }
                 pre.next = node;
                 pre = pre.next;
@@ -49,7 +49,7 @@ public class LC23MergeKSortedLists {
     }
 
     // 分治，归并
-    class Solution2 {
+    class Solution {
         public ListNode mergeKLists(ListNode[] lists) {
             int n = lists.length;
             if (n == 0) { //[]
