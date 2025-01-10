@@ -9,6 +9,7 @@ public class LC643MaximumAverageSubarrayI {
         Solution solution = new LC643MaximumAverageSubarrayI().new Solution();
 
     }
+    // 滑动窗口 只用求最大的和就行
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
@@ -18,7 +19,7 @@ public class LC643MaximumAverageSubarrayI {
             for (int i = 0; i < k; ++i) {
                 sum += nums[i];
             }
-            int maxSum = sum;
+            int maxSum = 0;
             for (int i = k; i < n; ++i) {
                 sum += nums[i];
                 sum -= nums[i - k];
