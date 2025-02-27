@@ -17,19 +17,16 @@ public class LC2090KRadiusSubarrayAverages {
     class Solution {
         public int[] getAverages(int[] nums, int k) {
             int n = nums.length;
-            if (n < 2 * k + 1) {
-                return new int[]{-1};
-            }
             int[] ans = new int[n];
             Arrays.fill(ans, -1);
             long sum = 0;
             for (int i = 0; i < n; ++i) {
                 sum += nums[i];
-                if (i - k < 0 || i + k >= n) {
+                if (i < 2 * k) {
                     continue;
                 }
-                ans[i] = (int) (sum / (2 * k + 1));
-                sum -= nums[i - k + 1];
+                ans[i - k] = (int) (sum / (2 * k + 1));
+                sum -= nums[i - 2 * k];
             }
             return ans;
         }
