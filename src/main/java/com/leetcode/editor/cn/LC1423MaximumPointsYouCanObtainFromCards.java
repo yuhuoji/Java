@@ -14,30 +14,49 @@ public class LC1423MaximumPointsYouCanObtainFromCards {
         System.out.println(solution.maxScore(cardPoints, k));
     }
 
-    // TODO @date 2025-02-28
-    // 前缀和？
-    // 长度为n-k的滑动窗口 求长度为n-k的滑动窗口最小值
+    // 1.逆向思维
+    // 长度为n-k的滑动窗口(固定长度的滑动窗口) 求长度为n-k的滑动窗口最小值
+    // 最大是10^9
+    // REVIEW @date 2025-03-03
+    // 2.前缀和
+    // 开头一段+结尾一段长度共k的和
+    // 初始化前k个数的和
+    // i从1到k,s每次增加c[n-i]-c[k-i],维护max(s)
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int maxScore2(int[] cardPoints, int k) {
+            int n = cardPoints.length;
+            int s = 0;
+            for (int i = 0; i < k; ++i) {
+                s += cardPoints[i];
+            }
+            int maxS = s;
+            for (int i = 1; i <= k; ++i) {
+                s += cardPoints[n - i] - cardPoints[k - i];
+                maxS = Math.max(maxS, s);
+            }
+            return maxS;
+        }
+
         public int maxScore(int[] cardPoints, int k) {
             int n = cardPoints.length;
-            int totalSum = Arrays.stream(cardPoints).sum();
-            if (k == n) {
-                return totalSum;
+            // int total = Arrays.stream(cardPoints).sum();
+            int total = 0;
+            int sum = 0;
+            for (int i = 0; i < n - k; ++i) {
+                sum += cardPoints[i];
             }
-            int minSum = totalSum, sum = 0;
-            for (int i = 0; i < n; ++i) {
-                int in = cardPoints[i];
-                sum += in;
-                if (i < n - k - 1) {
-                    continue;
-                }
-                minSum = Math.min(minSum, sum);
-                int out = cardPoints[i - k + 1];
-                sum -= out;
+            total = sum; // 计算total
+            int mn = sum;
+            for (int i = n - k; i < n; ++i) {
+                total += cardPoints[i]; // 计算total
+                sum += cardPoints[i] - cardPoints[i - n + k];
+                mn = Math.min(sum, mn);
             }
-            return totalSum - minSum;
+            return total - mn;
         }
+
     }
 // leetcode submit region end(Prohibit modification and deletion)
 
