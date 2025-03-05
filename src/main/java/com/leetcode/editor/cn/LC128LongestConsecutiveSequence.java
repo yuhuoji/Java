@@ -17,32 +17,7 @@ public class LC128LongestConsecutiveSequence {
     // 2.并查集
     // leetcode submit region begin(Prohibit modification and deletion)
 
-    // 哈希表
-    // 012..56..7..9 分段统计，求最长的长度
     class Solution {
-        public int longestConsecutive(int[] nums) {
-            Set<Integer> st = new HashSet<>();
-            for (int x : nums) {
-                st.add(x);
-            }
-            int ans = 0;
-            for (int x : st) {
-                if (st.contains(x - 1)) {
-                    continue;
-                }
-                int curNum = x;
-                int curLen = 1;
-                while (st.contains(curNum + 1)) {
-                    curLen++;
-                    curNum++;
-                }
-                ans = Math.max(ans, curLen);
-            }
-            return ans;
-        }
-    }
-
-    class Solution2 {
         // 并查集 最大的集合容量
         private final Map<Integer, Integer> father = new HashMap<>();
         private final Map<Integer, Integer> size = new HashMap<>();
@@ -85,28 +60,28 @@ public class LC128LongestConsecutiveSequence {
         }
     }
 
+    // 哈希表
+    // 012..56..7..9 分段统计，求最长的长度
     class Solution1 {
-        // 哈希表
         public int longestConsecutive(int[] nums) {
-            int n = nums.length;
-            Set<Integer> set = new HashSet<>();
+            Set<Integer> st = new HashSet<>();
             for (int x : nums) {
-                set.add(x);
+                st.add(x);
             }
-            int maxLen = 0;
-            for (int x : set) {
-                if (set.contains(x - 1)) {
+            int ans = 0;
+            for (int x : st) {
+                if (st.contains(x - 1)) {
                     continue;
                 }
                 int curNum = x;
                 int curLen = 1;
-                while (set.contains(curNum + 1)) {
-                    curLen++;
+                while (st.contains(curNum + 1)) {
                     curNum++;
+                    curLen++;
                 }
-                maxLen = Math.max(maxLen, curLen);
+                ans = Math.max(ans, curLen);
             }
-            return maxLen;
+            return ans;
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)
