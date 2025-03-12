@@ -15,8 +15,23 @@ public class LC27RemoveElement {
         System.out.println(Arrays.toString(nums));
     }
 
+    // lc283 用cnt计数
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int removeElement(int[] nums, int val) {
+            int n = nums.length;
+            int cnt = 0;
+            for (int i = 0; i < n; ++i) {
+                if (nums[i] != val) {
+                    nums[cnt++] = nums[i];
+                }
+            }
+            return cnt;
+        }
+    }
+
+    class Solution0 {
         // 双指针
         public int removeElement(int[] nums, int val) {
             int n = nums.length;
@@ -48,8 +63,6 @@ public class LC27RemoveElement {
             }
             return s;
         }
-
-
     }
 // leetcode submit region end(Prohibit modification and deletion)
 
