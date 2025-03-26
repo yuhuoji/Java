@@ -12,10 +12,30 @@ public class LC11ContainerWithMostWater {
 
     }
 
-    // 贪心 双指针
+    // 秒了 贪心 双指针
 
     // leetcode submit region begin(Prohibit modification and deletion)
+
+
     class Solution {
+        public int maxArea(int[] height) {
+            int n = height.length;
+            int l = 0, r = n - 1;
+            int mx = 0;
+            while (l < r) {
+                int h = Math.min(height[l], height[r]);
+                mx = Math.max(mx, (r - l) * h);
+                if (height[l] <= height[r]) {
+                    l++;
+                } else {
+                    r--;
+                }
+            }
+            return mx;
+        }
+    }
+
+    class Solution1 {
         public int maxArea(int[] height) {
             int n = height.length;
             int ans = 0;
