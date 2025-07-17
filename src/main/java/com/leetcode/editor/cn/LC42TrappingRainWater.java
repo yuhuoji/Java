@@ -15,8 +15,21 @@ public class LC42TrappingRainWater {
     // REVIEW @date 2024-07-23 单调栈
     // 双指针 竖着算
     // 单调栈 横着算
+
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int trap(int[] height) {
+            int n = height.length;
+            int ans = 0;
+            int l = 0, r = n - 1;
+            int lMax = 0, rMax = 0;
+            while (l < r) {
+
+            }
+        }
+    }
+
+    class Solution1 {
         // ！！！单调栈
         public int trap(int[] height) {
             int n = height.length;
