@@ -9,15 +9,54 @@ public class LC15ThreeSum {
     public static void main(String[] args) {
         System.out.println("Leetcode " + 15);
         Solution solution = new LC15ThreeSum().new Solution();
-        System.out.println(solution.threeSum(LeetCodeHelper.stringToIntegerArray("[0,0,0]")));
     }
 
-
-    // REVIEW @date 2024-07-23 双指针；lc1
+    // REVIEW @date 2025-08-26
+    // 双指针；lc1
+    // 两数之和
 
     // leetcode submit region begin(Prohibit modification and deletion)
-    // 答案输出数，答案中不能重复
+
     class Solution {
+        public List<List<Integer>> threeSum(int[] nums) {
+            Arrays.sort(nums);
+            int n = nums.length;
+            List<List<Integer>> ans = new ArrayList<>();
+            for (int i = 0; i < n - 2; ++i) {
+                if (i != 0 && nums[i] == nums[i - 1]) {
+                    continue;
+                }
+                int target = -nums[i];
+                // 剪枝
+                if (nums[i + 1] + nums[i + 2] > target) {
+                    break;
+                }
+                if (nums[n - 2] + nums[n - 1] < target) {
+                    continue;
+                }
+                for (int j = i + 1, k = n - 1; j < n; ++j) {
+                    if (j != i + 1 && nums[j] == nums[j - 1]) {
+                        continue;
+                    }
+                    while (j < k && nums[j] + nums[k] > target) {
+                        k--;
+                    }
+                    // j>=k or nums[j] + nums[k] <= target
+                    // 剪枝
+                    if (j == k) {
+                        break;
+                    }
+                    if (j < k && nums[j] + nums[k] == target) {
+                        ans.add(List.of(nums[i], nums[j], nums[k]));
+                    }
+                }
+            }
+            return ans;
+        }
+    }
+
+    // 答案输出数，答案中不能重复
+    class Solution1 {
         // 排序+双指针
         public List<List<Integer>> threeSum11(int[] nums) {
             int n = nums.length;

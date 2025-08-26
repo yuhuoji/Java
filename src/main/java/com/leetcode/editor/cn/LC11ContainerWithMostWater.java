@@ -12,12 +12,30 @@ public class LC11ContainerWithMostWater {
 
     }
 
-    // 秒了 贪心 双指针
+    // REVIEW @date 2025-08-26
+    // 错误：没用height[i]的值比较
 
     // leetcode submit region begin(Prohibit modification and deletion)
 
-
     class Solution {
+        // area=min(l,r)*(r-l)
+        // 只有比curL更大的才可能取得更大值
+        public int maxArea(int[] height) {
+            int n = height.length;
+            int ans = 0;
+            for (int l = 0, r = n - 1; l < r; ) {
+                ans = Math.max(ans, Math.min(height[l], height[r]) * (r - l));
+                if (height[l] < height[r]) {
+                    l++;
+                } else {
+                    r--;
+                }
+            }
+            return ans;
+        }
+    }
+
+    class Solution2 {
         public int maxArea(int[] height) {
             int n = height.length;
             int l = 0, r = n - 1;

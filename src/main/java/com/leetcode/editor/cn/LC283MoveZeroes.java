@@ -12,12 +12,38 @@ public class LC283MoveZeroes {
 
     }
 
-    // REVIEW @date 2025-03-12
+    // REVIEW @date 2025-08-26
 
     // leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        // 栈
+        public void moveZeroes(int[] nums) {
+            int n = nums.length;
+            int stackSize = 0;
+            for (int x : nums) {
+                if (x != 0) {
+                    nums[stackSize++] = x;
+                }
+            }
+            Arrays.fill(nums, stackSize, n, 0);
+        }
+
+        public void moveZeroes1(int[] nums) {
+            int n = nums.length;
+            for (int i = 0, i0 = 0; i < n; ++i) {
+                if (nums[i] != 0) {
+                    int tmp = nums[i];
+                    nums[i] = nums[i0];
+                    nums[i0] = tmp;
+                    i0++;
+                }
+            }
+        }
+    }
+
 
     // 快慢指针 保持顺序，用i0记录第一个0的位置，i与i0交换
-    class Solution {
+    class Solution3 {
         public void moveZeroes(int[] nums) {
             int n = nums.length;
             int i0 = 0;

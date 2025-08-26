@@ -2,10 +2,7 @@ package com.leetcode.editor.cn;
 
 import com.leetcode.helper.*;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 // 102 二叉树的层序遍历
 public class LC102BinaryTreeLevelOrderTraversal {
@@ -33,23 +30,23 @@ public class LC102BinaryTreeLevelOrderTraversal {
      */
     class Solution {
         public List<List<Integer>> levelOrder(TreeNode root) {
-            List<List<Integer>> ans = new ArrayList<>();
             if (root == null) {
-                return ans;
+                return new ArrayList<>();
             }
+            List<List<Integer>> ans = new ArrayList<>();
             Queue<TreeNode> q = new ArrayDeque<>();
             q.add(root);
             while (!q.isEmpty()) {
                 int size = q.size();
                 ans.add(new ArrayList<>());
                 for (int i = 0; i < size; ++i) {
-                    TreeNode node = q.poll();
-                    ans.get(ans.size() - 1).add(node.val);
-                    if (node.left != null) {
-                        q.add(node.left);
+                    TreeNode cur = q.poll();
+                    ans.getLast().add(cur.val);
+                    if (cur.left != null) {
+                        q.add(cur.left);
                     }
-                    if (node.right != null) {
-                        q.add(node.right);
+                    if (cur.right != null) {
+                        q.add(cur.right);
                     }
                 }
             }
