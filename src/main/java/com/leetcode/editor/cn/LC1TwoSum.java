@@ -19,6 +19,21 @@ public class LC1TwoSum {
         public int[] twoSum(int[] nums, int target) {
             int n = nums.length;
             Map<Integer, Integer> mp = new HashMap<>();
+            for (int i = 0; i < n; ++i) {
+                int x = nums[i];
+                if (mp.containsKey(target - x)) {
+                    return new int[]{mp.get(target - x), i};
+                }
+                mp.put(nums[i], i);
+            }
+            return new int[]{};
+        }
+    }
+
+    class Solution1 {
+        public int[] twoSum(int[] nums, int target) {
+            int n = nums.length;
+            Map<Integer, Integer> mp = new HashMap<>();
             for (int j = 0; j < n; ++j) {
                 int x = nums[j];
                 if (mp.containsKey(target - x)) {
@@ -45,6 +60,7 @@ public class LC1TwoSum {
             return null;
         }
     }
+
 // leetcode submit region end(Prohibit modification and deletion)
 
 }
