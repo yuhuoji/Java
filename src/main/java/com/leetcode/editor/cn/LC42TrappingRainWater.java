@@ -1,8 +1,7 @@
 package com.leetcode.editor.cn;
 
-import com.leetcode.helper.*;
-
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 // 42 接雨水
 public class LC42TrappingRainWater {
@@ -12,17 +11,37 @@ public class LC42TrappingRainWater {
 
     }
 
-    // REVIEW @date 2025-08-28
-    // TODO @date 2025-08-28 单调栈
+    // REVIEW @date 2025-08-29 单调栈及相关题目
     // 双指针 前后缀分解 相向双指针 竖着算
     // 单调栈 横着算
     // 定义 lMax[i] 无论是否包含 i 位置的值，最终结果都是正确的
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // 单调栈 和上一个最大元素有关
+        // 找上一个更大元素，在找的过程中填坑。
+        public int trap(int[] height) {
+            int n = height.length;
+            int ans = 0;
+            Deque<Integer> st = new ArrayDeque<>();
+            for (int i = 0; i < n; ++i) {
+                int h = height[i];
+                while (!st.isEmpty() && h >= height[st.peek()]) {
+                    int bottomH = height[st.pop()];
+                    if (st.isEmpty()) {
+                        break;
+                    }
+                    int left = st.getFirst();
+                    int dh = Math.min(height[left], height[i]) - bottomH;
+                    ans += dh * (i - left - 1);
+                }
+                st.push(i);
+            }
+            return ans;
+        }
 
         // 相向双指针 由前后缀分解而来
-        public int trap(int[] height) {
+        public int trap3(int[] height) {
             int n = height.length;
             int ans = 0;
             int lMax = 0, rMax = 0; // 初始化不影响
