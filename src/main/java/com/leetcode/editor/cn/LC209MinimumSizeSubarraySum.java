@@ -15,8 +15,81 @@ public class LC209MinimumSizeSubarraySum {
         System.out.println(solution.minSubArrayLen(target, nums));
     }
 
+    // REVIEW @date 2025-09-12 前缀和解法
+
     // leetcode submit region begin(Prohibit modification and deletion)
+
     class Solution {
+        // 前缀和
+        public int minSubArrayLen(int target, int[] nums) {
+            int n = nums.length;
+            int[] pre = new int[n + 1];
+            for (int i = 0; i < n; ++i) {
+                pre[i + 1] += pre[i] + nums[i];
+            }
+            int ans = n + 1;
+            for (int right = 0; right < n; ++right) { // 枚举右，寻找左
+                int requiredSum = pre[right + 1] - target; // 从[0..r]中找这个l
+                int index = Arrays.binarySearch(pre, 0, right + 1, requiredSum); // pre[l]<=pre[r+1]-target
+                if (index >= 0) {
+                    // 找到精确匹配的值，此时子数组和恰好等于 target
+                    ans = Math.min(ans, right - index + 1);
+                } else {
+                    // 未找到精确匹配，计算插入点
+                    int insertionPoint = -index - 1;
+                    // 插入点左侧的元素都 <= requiredSum（因为数组递增）
+                    // 取 insertionPoint - 1 作为可能的左边界
+                    if (insertionPoint > 0) { // 确保有合法的左边界
+                        ans = Math.min(ans, right - (insertionPoint - 1) + 1);
+                    }
+                }
+            }
+            return ans == n + 1 ? 0 : ans;
+        }
+
+        // 滑动窗口 NlogN
+        // 循环内更新答案 每个可行解都更新答案
+        public int minSubArrayLen1(int target, int[] nums) {
+            int n = nums.length;
+            int minStart = 0, minLen = n + 1;
+            int sum = 0;
+            int left = 0;
+            for (int right = 0; right < n; ++right) {
+                int x = nums[right];
+                sum += x;
+                while (sum >= target) {
+                    if (right - left + 1 < minLen) {
+                        minLen = right - left + 1;
+                        minStart = left;
+                    }
+                    sum -= nums[left++];
+                }
+            }
+            return minLen != n + 1 ? minLen : 0;
+        }
+
+        // 循环外更新答案
+        public int minSubArrayLen2(int target, int[] nums) {
+            int n = nums.length;
+            int minStart = 0, minLen = n + 1;
+            int sum = 0;
+            int left = 0;
+            for (int right = 0; right < n; ++right) {
+                int x = nums[right];
+                sum += x;
+                while (sum - nums[left] >= target) {
+                    sum -= nums[left++];
+                }
+                if (sum >= target && right - left + 1 < minLen) {
+                    minLen = right - left + 1;
+                    minStart = left;
+                }
+            }
+            return minLen != n + 1 ? minLen : 0;
+        }
+    }
+
+    class Solution1 {
         // 滑动窗口
         // 时间 O(N)
         public int minSubArrayLen(int target, int[] nums) {
