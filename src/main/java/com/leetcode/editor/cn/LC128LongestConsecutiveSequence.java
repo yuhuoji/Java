@@ -12,15 +12,38 @@ public class LC128LongestConsecutiveSequence {
 
     }
 
-    // TODO @date 2025-09-01
-    // REVIEW @date 2025-03-07 并查集模版
+    // TODO @date 2025-09-17 并查集模版
+
     // 并查集（哈希表实现，带size）
     // 1.哈希表
     // 2.并查集
     // leetcode submit region begin(Prohibit modification and deletion)
 
-    // 并查集
     class Solution {
+        public int longestConsecutive(int[] nums) {
+            Set<Integer> st = new HashSet<>();
+            for (int x : nums) {
+                st.add(x);
+            }
+            int ans = 0;
+            for (int x : st) {
+                if (st.contains(x - 1)) { // 只从每一段的第一个数开始
+                    continue;
+                }
+                int curNum = x;
+                int curLen = 1;
+                while (st.contains(curNum + 1)) {
+                    curNum++;
+                    curLen++;
+                }
+                ans = Math.max(ans, curLen);
+            }
+            return ans;
+        }
+    }
+
+    // 并查集
+    class Solution2 {
         private final Map<Integer, Integer> father = new HashMap<>();
         private final Map<Integer, Integer> size = new HashMap<>();
 
@@ -71,32 +94,9 @@ public class LC128LongestConsecutiveSequence {
         }
     }
 
-    // 哈希表
-    // 012..56..7..9 分段统计，求最长的长度
-    class Solution1 {
-        public int longestConsecutive(int[] nums) {
-            Set<Integer> st = new HashSet<>();
-            for (int x : nums) {
-                st.add(x);
-            }
-            int ans = 0;
-            for (int x : st) {
-                if (st.contains(x - 1)) {
-                    continue;
-                }
-                int curNum = x;
-                int curLen = 1;
-                while (st.contains(curNum + 1)) {
-                    curNum++;
-                    curLen++;
-                }
-                ans = Math.max(ans, curLen);
-            }
-            return ans;
-        }
-    }
+    // 哈希表 012..56..7..9 分段统计，求最长的长度
 
-    class Solution2 {
+    class Solution0 {
         // 并查集 最大的集合容量
         private final Map<Integer, Integer> father = new HashMap<>();
         private final Map<Integer, Integer> size = new HashMap<>();
