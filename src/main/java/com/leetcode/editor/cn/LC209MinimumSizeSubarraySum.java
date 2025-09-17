@@ -15,7 +15,7 @@ public class LC209MinimumSizeSubarraySum {
         System.out.println(solution.minSubArrayLen(target, nums));
     }
 
-    // REVIEW @date 2025-09-12 前缀和解法
+    // REVIEW @date 2025-09-12 前缀和+二分
 
     // leetcode submit region begin(Prohibit modification and deletion)
 
@@ -30,15 +30,14 @@ public class LC209MinimumSizeSubarraySum {
             int ans = n + 1;
             for (int right = 0; right < n; ++right) { // 枚举右，寻找左
                 int requiredSum = pre[right + 1] - target; // 从[0..r]中找这个l
-                int index = Arrays.binarySearch(pre, 0, right + 1, requiredSum); // pre[l]<=pre[r+1]-target
+                int index = Arrays.binarySearch(pre, 0, right + 1, requiredSum); // 找满足pre[l]=pre[r+1]-target的l
                 if (index >= 0) {
                     // 找到精确匹配的值，此时子数组和恰好等于 target
                     ans = Math.min(ans, right - index + 1);
                 } else {
-                    // 未找到精确匹配，计算插入点
-                    int insertionPoint = -index - 1;
+                    int insertionPoint = -index - 1; //插入点
                     // 插入点左侧的元素都 <= requiredSum（因为数组递增）
-                    // 取 insertionPoint - 1 作为可能的左边界
+                    // 取 insertionPoint - 1 作为可能的左边界，insertionPoint = 0 说明数组中所有元素都大于 requiredSum（即没有符合 pre[left] <= requiredSum 的左边界）
                     if (insertionPoint > 0) { // 确保有合法的左边界
                         ans = Math.min(ans, right - (insertionPoint - 1) + 1);
                     }

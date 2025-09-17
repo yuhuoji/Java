@@ -12,21 +12,95 @@ public class LC76MinimumWindowSubstring {
 
     }
 
-    // REVIEW @date 2025-09-12
+    // REVIEW @date 2025-09-17
 
-    // ASCII A 65-90 a 97-122
-    // 等于 -》 包含
-    // s包括t
     // leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        // 返回 起点和最小长度
-        // 覆盖
-        public String minWindow(String s, String t) {
 
+    class Solution {
+        public String minWindow(String S, String T) {
+            char[] s = S.toCharArray();
+            char[] t = T.toCharArray();
+            int[] sCnt = new int[128];
+            int[] tCnt = new int[128];
+            int sLen = S.length();
+            int tLen = T.length();
+            int minStart = -1, minLen = sLen + 1;
+            for (int i = 0; i < tLen; ++i) {
+                tCnt[t[i]]++;
+            }
+            int less = 0;
+            for (int i = 0; i < 128; ++i) {
+                less += tCnt[i] > 0 ? 1 : 0;
+            }
+            int left = 0;
+            for (int right = 0; right < sLen; ++right) {
+                sCnt[s[right]]++;
+                if (sCnt[s[right]] == tCnt[s[right]]) {
+                    less--;
+                }
+                while (less == 0) {
+                    if (right - left + 1 < minLen) {
+                        minStart = left;
+                        minLen = right - left + 1;
+                    }
+                    if (sCnt[s[left]] == tCnt[s[left]]) {
+                        less++;
+                    }
+                    sCnt[s[left]]--;
+                    left++;
+                }
+            }
+            return minLen == sLen + 1 ? "" : S.substring(minStart, minStart + minLen);
         }
     }
 
-    class Solution2 {
+    class Solution1 {
+        // ASCII A 65-90 a 97-122
+        // 返回 起点和最小长度
+        // 滑动窗口 长度大于等于tLen
+        public String minWindow(String S, String T) {
+            char[] s = S.toCharArray();
+            char[] t = T.toCharArray();
+            int[] sCnt = new int[128];
+            int[] tCnt = new int[128];
+            int sLen = s.length;
+            int tLen = t.length;
+            int minStart = 0, minLen = sLen + 1;
+            for (int i = 0; i < tLen; ++i) {
+                tCnt[t[i]]++;
+            }
+            int left = 0;
+            for (int right = 0; right < sLen; ++right) {
+                sCnt[s[right]]++;
+                while (isCovered(sCnt, tCnt)) {
+                    if (right - left + 1 < minLen) {
+                        minStart = left;
+                        minLen = right - left + 1;
+                    }
+                    sCnt[s[left]]--;
+                    left++;
+                }
+            }
+            return minLen == sLen + 1 ? "" : S.substring(minStart, minStart + minLen);
+        }
+
+        // O(52)
+        private boolean isCovered(int[] sCnt, int[] tCnt) {
+            for (int i = 'A'; i <= 'Z'; ++i) {
+                if (sCnt[i] < tCnt[i]) {
+                    return false;
+                }
+            }
+            for (int i = 'a'; i <= 'z'; ++i) {
+                if (sCnt[i] < tCnt[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    class Solution20 {
         // 时间复杂度O(m+n)
         public String minWindow(String s, String t) {
             int sLen = s.length();
@@ -68,7 +142,7 @@ public class LC76MinimumWindowSubstring {
     }
 
 
-    class Solution1 {
+    class Solution10 {
         // 时间复杂度O(∑m+n)
         public String minWindow(String s, String t) {
             int sLen = s.length();
