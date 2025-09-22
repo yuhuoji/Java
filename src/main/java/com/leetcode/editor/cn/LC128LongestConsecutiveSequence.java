@@ -12,14 +12,14 @@ public class LC128LongestConsecutiveSequence {
 
     }
 
-    // TODO @date 2025-09-17 并查集模版
+    // REVIEW @date 2025-09-22 其他并查集题目 并查集模版
 
     // 并查集（哈希表实现，带size）
     // 1.哈希表
     // 2.并查集
     // leetcode submit region begin(Prohibit modification and deletion)
 
-    class Solution {
+    class Solution3 {
         public int longestConsecutive(int[] nums) {
             Set<Integer> st = new HashSet<>();
             for (int x : nums) {
@@ -39,6 +39,54 @@ public class LC128LongestConsecutiveSequence {
                 ans = Math.max(ans, curLen);
             }
             return ans;
+        }
+    }
+
+    // 练习
+    class Solution {
+        private Map<Integer, Integer> father = new HashMap<>();
+        private Map<Integer, Integer> size = new HashMap<>();
+
+        // 找到根
+        private int find(int i) {
+            if (father.get(i) != i) {
+                father.put(i, find(father.get(i))); // 路经压缩
+            }
+            return father.get(i);
+        }
+
+        private boolean isSameSet(int x, int j) {
+            return find(x) == find(j);
+        }
+
+        private void union(int x, int y) {
+            int faX = find(x);
+            int faY = find(y);
+            if (faX != faY) {
+                if (size.get(faX) < size.get(faY)) {
+                    father.put(faX, faY);
+                    size.put(faY, size.get(faX) + size.get(faY));
+                } else {
+                    father.put(faY, faX);
+                    size.put(faX, size.get(faX) + size.get(faY));
+                }
+            }
+        }
+
+        public int longestConsecutive(int[] nums) {
+            if (nums.length == 0) {
+                return 0;
+            }
+            for (int x : nums) {
+                father.put(x, x);
+                size.put(x, 1);
+            }
+            for (int x : nums) {
+                if (father.containsKey(x + 1)) {
+                    union(x, x + 1);
+                }
+            }
+            return Collections.max(size.values());
         }
     }
 

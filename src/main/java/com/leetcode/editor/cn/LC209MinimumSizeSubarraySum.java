@@ -35,7 +35,7 @@ public class LC209MinimumSizeSubarraySum {
                     // 找到精确匹配的值，此时子数组和恰好等于 target
                     ans = Math.min(ans, right - index + 1);
                 } else {
-                    int insertionPoint = -index - 1; //插入点
+                    int insertionPoint = -index - 1; // 插入点
                     // 插入点左侧的元素都 <= requiredSum（因为数组递增）
                     // 取 insertionPoint - 1 作为可能的左边界，insertionPoint = 0 说明数组中所有元素都大于 requiredSum（即没有符合 pre[left] <= requiredSum 的左边界）
                     if (insertionPoint > 0) { // 确保有合法的左边界

@@ -22,6 +22,7 @@ public class LC3LongestSubstringWithoutRepeatingCharacters {
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
+
         // 哈希数组/布尔数组
         public int lengthOfLongestSubstring(String string) {
             int n = string.length();
