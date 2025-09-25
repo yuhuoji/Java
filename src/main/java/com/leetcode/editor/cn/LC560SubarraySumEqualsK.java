@@ -12,13 +12,8 @@ public class LC560SubarraySumEqualsK {
         Solution solution = new LC560SubarraySumEqualsK().new Solution();
 
     }
-    //子数组 前缀和
-    // 用哈希快速查询
-    // sum[i,j] = pre[j]-pre[i-1];
-    // pre左侧加一位0
-    // sum[i,j] = pre[j+1]-pre[i];
-    // [0,j]的和为sum，只需要找有没有sum-k即可
-    // 如果k=0，先更新哈希表会查到sum
+
+    //REVIEW @date 2025-09-25 MAP函数的使用
 
     // leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
@@ -36,6 +31,13 @@ public class LC560SubarraySumEqualsK {
             return ans;
         }
 
+        // 子数组 前缀和
+        // 用哈希快速查询
+        // sum[i,j] = pre[j]-pre[i-1];
+        // pre左侧加一位0
+        // sum[i,j] = pre[j+1]-pre[i];
+        // [0,j]的和为sum，只需要找有没有sum-k即可
+        // 如果k=0，先更新哈希表会查到sum
         public int subarraySum1(int[] nums, int k) {
             int n = nums.length;
             int ans = 0;

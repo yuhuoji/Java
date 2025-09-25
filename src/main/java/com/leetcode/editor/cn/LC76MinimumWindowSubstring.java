@@ -12,7 +12,7 @@ public class LC76MinimumWindowSubstring {
 
     }
 
-    // REVIEW @date 2025-09-17
+    // REVIEW @date 2025-09-17 解法和优化后的less
 
     // leetcode submit region begin(Prohibit modification and deletion)
 
@@ -28,7 +28,7 @@ public class LC76MinimumWindowSubstring {
             for (int i = 0; i < tLen; ++i) {
                 tCnt[t[i]]++;
             }
-            int less = 0;
+            int less = 0; //用less记录s和t不同字母的个数
             for (int i = 0; i < 128; ++i) {
                 less += tCnt[i] > 0 ? 1 : 0;
             }
